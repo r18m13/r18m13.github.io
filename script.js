@@ -1,11 +1,17 @@
-const menuIcon = document.getElementById('menu-icon');
-const navLinks = document.getElementById('nav-links');
-
-menuIcon.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
 const skillText = document.getElementById('skill-text');
-const skills = ['JavaScript', 'React', 'Node.js', 'Python', 'Machine Learning', 'HTML & CSS'];
+const skills = [
+    'JavaScript',
+    'React',
+    'Node.js',
+    'Python',
+    'Machine Learning',
+    'HTML & CSS',
+    'Git & GitHub',      // Example skill 1
+    'SQL',               // Example skill 2
+    'Docker',            // Example skill 3
+    'Cloud Computing'    // Example skill 4
+]; 
+
 let currentSkillIndex = 0;
 let isDeleting = false;
 let text = '';
@@ -15,7 +21,7 @@ let pauseBetweenSkills = 1000; // Pause between skills
 
 function type() {
     const currentSkill = skills[currentSkillIndex];
-    
+
     if (!isDeleting) {
         // Add one character to the text string
         text = currentSkill.slice(0, text.length + 1);

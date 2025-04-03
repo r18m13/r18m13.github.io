@@ -1,3 +1,4 @@
+/* General Reset and Styles */
 * {
     margin: 0;
     padding: 0;
@@ -5,216 +6,32 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f7f7f7;
-}
-
-header {
-    background: #333;
-    color: white;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
-header .logo h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .menu-icon {
-    display: none;
-    cursor: pointer;
-}
-
-header nav ul {
-    list-style-type: none;
-    display: flex;
-}
-
-header nav ul li {
-    margin: 0 15px;
-}
-
-header nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.1rem;
-}
-
-#hero {
-    background: url('hero-bg.jpg') no-repeat center center/cover;
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-#hero h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-#hero p {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-}
-
-#hero .btn {
-    background-color: #5c67f2;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 .container {
     width: 80%;
     margin: 0 auto;
+    max-width: 1200px;
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.project-card {
-    background: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-}
-
-.project-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.project-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.project-card p {
-    font-size: 1rem;
-    margin-bottom: 15px;
-}
-
-.project-card .btn {
-    background-color: #5c67f2;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.skill-list {
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-}
-
-.skill-list li {
-    background: #e4e4e4;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-form input, form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-form button {
-    background-color: #5c67f2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-footer {
+/* Hero Section */
+#hero {
     background: #333;
-    color: white;
+    color: #fff;
+    padding: 50px 0;
     text-align: center;
-    padding: 20px;
 }
 
-footer .social-links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 1.2rem;
+/* Skills Section */
+#skills {
+    padding: 50px 0;
+    text-align: center;
 }
 
-footer .social-links a:hover {
-    color: #5c67f2;
-}
-
-@media (max-width: 768px) {
-    header nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #333;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    header nav ul li {
-        margin: 10px 0;
-    }
-
-    header nav ul li a {
-        padding: 10px;
-    }
-
-    .menu-icon {
-        display: block;
-    }
-
-    #hero h2 {
-        font-size: 2.5rem;
-    }
-
-    .container {
-        width: 90%;
-    }
-
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
-}
-/* Typing Effect Styles */
 .typing-effect {
     font-size: 2rem;
     font-family: 'Courier New', Courier, monospace;
@@ -238,12 +55,36 @@ footer .social-links a:hover {
     }
 }
 
-/* Animation for typing text */
-@keyframes typing {
-    from {
-        width: 0;
+/* Projects Section */
+#projects {
+    background: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.project {
+    margin: 20px 0;
+}
+
+h3 {
+    color: #333;
+}
+
+/* Contact Section */
+#contact {
+    background: #333;
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
     }
-    to {
-        width: 100%;
+
+    .typing-effect {
+        font-size: 1.5rem;
     }
 }
