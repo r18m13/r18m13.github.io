@@ -1,118 +1,74 @@
-/* General Reset and Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #000; /* Black background */
-    color: #fff; /* White text color */
-    line-height: 1.6;
-    overflow-x: hidden;
-    height: 100%;
+    display: flex;
+    min-height: 175vh;
+    font-family: Arial, sans-serif;
+    background-image: url('T5.jpg');
+    background-size: cover;  /* Makes the image cover the entire screen */
+    background-position: center center;  /* Centers the image */
+    background-repeat: no-repeat;  /* Prevents the image from repeating */
+    color:rgb(215, 213, 248);
 }
 
-h1, h2, h3, p {
-    margin: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    max-width: 1200px;
-}
-
-/* Hero Section */
-#hero {
-    background: #000; /* Black background */
-    color: #fff; /* White text */
-    padding: 50px 0;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Skills Section */
-#skills {
-    padding: 50px 0;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.typing-effect {
+header {
+    top: 0;
+    left: 0;
+    display: flex;
     font-size: 2rem;
-    font-family: 'Courier New', Courier, monospace;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;  /* Initial width */
-    border-right: 2px solid #fff; /* White cursor effect */
-    display: inline-block;
-    position: relative;
-    color: #fff;
-}
-
-#cursor {
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(255, 255, 255);
+    padding: 20px;
     position: absolute;
-    animation: blink 0.8s step-end infinite; /* Cursor blinking animation */
 }
 
-/* Blinking Cursor */
-@keyframes blink {
-    50% {
-        border-color: transparent;
-    }
+.typing-container {
+    font-size: 2rem;
+    position: absolute;
 }
 
-/* Projects Section */
-#projects {
-    background: #000; /* Black background */
-    color: #fff;
-    padding: 50px 0;
-    text-align: center;
-    margin-top: 20px;
+#typed-text {
+    display: inline-block;
+    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    overflow: hidden;
 }
 
-.project {
-    margin: 20px 0;
+
+nav ul {
+    display: flex;
+    position: relative;
+    top: 5px;
+    left: 100% ;
+    list-style: none;
 }
 
-h3 {
-    color: #fff;
+nav ul li {
+    display:inline-block;
+    margin: 0 15px;
 }
 
-/* Contact Section */
-#contact {
-    background: #000; /* Black background */
-    color: #fff;
-    padding: 50px 0;
-    text-align: center;
-    margin-top: 20px;
+nav ul li c {
+    font-family: "Silkscreen", sans-serif;
+    font-style: normal;
+    font-size: 1.5rem;
+    color: #ffffff;
 }
 
-/* Minimalistic Design: Remove excess elements */
-h1, h2, h3, p {
-    font-weight: normal;
-}
-
-.container {
+main {
+    display: flex;
+    align-items: flex-end;
     padding: 20px;
 }
 
-.typing-effect {
-    font-size: 2rem;
-    font-weight: normal;
-    color: #fff; /* Keep the typing effect in white */
-    text-align: center;
+button {
+    align-self: center;
+    background: #0073e6;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
-
-    .typing-effect {
-        font-size: 1.5rem;
-    }
+button:hover {
+    background: #005bb5;
 }
+

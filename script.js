@@ -1,57 +1,24 @@
-const skillText = document.getElementById('skill-text');
-const skills = [
-    'JavaScript',
-    'React',
-    'Node.js',
-    'Python',
-    'Machine Learning',
-    'HTML & CSS',
-    'Git & GitHub',
-    'SQL',
-    'Docker',
-    'AWS',
-    'Vue.js',
-    'Angular',
-    'C++'
-];
+function showMessage() {
+    document.getElementById("message").textContent = "Hello, thanks for clicking!";
+}
 
-let currentSkillIndex = 0;
-let isDeleting = false;
-let text = '';
-let speed = 100; // Typing speed
-let deleteSpeed = 75; // Deleting speed
-let pauseBetweenSkills = 1000; // Pause between skills
+const text = "My_Portfolio";  // The text to be typed in the header
+const typedTextElement = document.getElementById("typed-text");
 
-function type() {
-    const currentSkill = skills[currentSkillIndex];
 
-    if (!isDeleting) {
-        // Add one character to the text string
-        text = currentSkill.slice(0, text.length + 1);
-        skillText.textContent = text;
-    } else {
-        // Remove one character from the text string
-        text = currentSkill.slice(0, text.length - 1);
-        skillText.textContent = text;
-    }
+let index = 0;
+const typingSpeed = 100; // Time in ms between each letter being typed
 
-    // Check if we should delete or type
-    if (!isDeleting && text === currentSkill) {
-        // Pause after typing a skill
-        setTimeout(() => {
-            isDeleting = true;
-            setTimeout(type, pauseBetweenSkills); // Pause before deleting
-        }, pauseBetweenSkills);
-    } else if (isDeleting && text === '') {
-        // Move to next skill after erasing
-        isDeleting = false;
-        currentSkillIndex = (currentSkillIndex + 1) % skills.length; // Cycle through skills
-        setTimeout(type, speed); // Pause before typing next skill
-    } else {
-        // Continue typing or deleting
-        setTimeout(type, isDeleting ? deleteSpeed : speed);
+// Function to simulate typing
+function typeText() {
+    if (index < text.length) {
+        typedTextElement.innerHTML += text.charAt(index);  // Add one character at a time
+        index++;
+        setTimeout(typeText, typingSpeed);  // Call typeText again after a delay
     }
 }
 
-// Start typing animation
-type();
+// Start typing effect when page loads
+window.onload = () => {
+    typeText();
+};
