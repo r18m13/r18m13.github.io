@@ -6,16 +6,19 @@ const skills = [
     'Python',
     'Machine Learning',
     'HTML & CSS',
-    'Git & GitHub',      // Example skill 1
-    'SQL',               // Example skill 2
-    'Docker',            // Example skill 3
-    'Cloud Computing'    // Example skill 4
-]; 
+    'Git & GitHub',
+    'SQL',
+    'Docker',
+    'AWS',
+    'Vue.js',
+    'Angular',
+    'C++'
+];
 
 let currentSkillIndex = 0;
 let isDeleting = false;
 let text = '';
-let speed = 150; // Typing speed
+let speed = 100; // Typing speed
 let deleteSpeed = 75; // Deleting speed
 let pauseBetweenSkills = 1000; // Pause between skills
 
