@@ -14,7 +14,12 @@
             <div class="logo">
                 <h1>Your Name</h1>
             </div>
-            <ul class="nav-links">
+            <div class="menu-icon" id="menu-icon">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -26,7 +31,7 @@
     <section id="hero">
         <div class="hero-content">
             <h2>Welcome to My Portfolio</h2>
-            <p>I am a passionate engineer with experience in web development and problem-solving.</p>
+            <p>Engineer | Developer | Innovator</p>
             <a href="#contact" class="btn">Get in Touch</a>
         </div>
     </section>
@@ -34,19 +39,33 @@
     <section id="about">
         <div class="container">
             <h2>About Me</h2>
-            <p>Hello! I'm Your Name, a software engineer with a focus on web development. I enjoy solving complex problems and building scalable solutions. In my free time, I love learning new technologies and contributing to open-source projects.</p>
+            <p>Hello! I'm Your Name, a software engineer passionate about creating solutions using cutting-edge technologies. I specialize in web development, data analysis, and problem-solving. Let's connect!</p>
         </div>
     </section>
 
     <section id="projects">
         <div class="container">
             <h2>Projects</h2>
-            <div class="project-card">
-                <h3>Project Title</h3>
-                <p>Description of the project. Highlight the technologies used and the challenges solved.</p>
-                <a href="https://github.com/yourusername/project" target="_blank" class="btn">View on GitHub</a>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="project1.jpg" alt="Project 1">
+                    <h3>Project 1</h3>
+                    <p>This is a project description. Highlight the technologies used and the challenges you solved.</p>
+                    <a href="https://github.com/yourusername/project" target="_blank" class="btn">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <img src="project2.jpg" alt="Project 2">
+                    <h3>Project 2</h3>
+                    <p>This is a project description. Highlight the technologies used and the challenges you solved.</p>
+                    <a href="https://github.com/yourusername/project" target="_blank" class="btn">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <img src="project3.jpg" alt="Project 3">
+                    <h3>Project 3</h3>
+                    <p>This is a project description. Highlight the technologies used and the challenges you solved.</p>
+                    <a href="https://github.com/yourusername/project" target="_blank" class="btn">View on GitHub</a>
+                </div>
             </div>
-            <!-- Repeat similar project-card divs for more projects -->
         </div>
     </section>
 
@@ -55,10 +74,11 @@
             <h2>Skills</h2>
             <ul class="skill-list">
                 <li>JavaScript</li>
-                <li>Python</li>
                 <li>React</li>
                 <li>Node.js</li>
-                <li>CSS/HTML</li>
+                <li>Python</li>
+                <li>Machine Learning</li>
+                <li>HTML & CSS</li>
             </ul>
         </div>
     </section>
@@ -83,5 +103,6 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>

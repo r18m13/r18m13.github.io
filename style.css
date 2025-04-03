@@ -7,12 +7,18 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
+    background-color: #f7f7f7;
 }
 
 header {
     background: #333;
     color: white;
     padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 header .logo h1 {
@@ -20,10 +26,20 @@ header .logo h1 {
     font-size: 2rem;
 }
 
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
 header nav ul {
     list-style-type: none;
     display: flex;
-    justify-content: flex-end;
 }
 
 header nav ul li {
@@ -37,9 +53,9 @@ header nav ul li a {
 }
 
 #hero {
-    background: #2d2d2d;
+    background: url('hero-bg.jpg') no-repeat center center/cover;
     color: white;
-    padding: 80px 20px;
+    padding: 100px 20px;
     text-align: center;
 }
 
@@ -61,10 +77,6 @@ header nav ul li a {
     border-radius: 5px;
 }
 
-#about, #projects, #skills, #contact {
-    padding: 60px 20px;
-}
-
 .container {
     width: 80%;
     margin: 0 auto;
@@ -75,19 +87,40 @@ h2 {
     margin-bottom: 20px;
 }
 
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
 .project-card {
-    background: #f4f4f4;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
 .project-card h3 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
 .project-card p {
-    margin: 10px 0;
+    font-size: 1rem;
+    margin-bottom: 15px;
 }
 
 .project-card .btn {
@@ -149,8 +182,24 @@ footer .social-links a:hover {
 
 @media (max-width: 768px) {
     header nav ul {
+        display: none;
         flex-direction: column;
+        width: 100%;
+        background-color: #333;
         text-align: center;
+        margin-top: 20px;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    header nav ul li a {
+        padding: 10px;
+    }
+
+    .menu-icon {
+        display: block;
     }
 
     #hero h2 {
@@ -161,7 +210,7 @@ footer .social-links a:hover {
         width: 90%;
     }
 
-    .project-card {
-        padding: 15px;
+    .project-grid {
+        grid-template-columns: 1fr;
     }
 }
