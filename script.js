@@ -73,26 +73,40 @@ const text = "My_Portfolio";  // The text to be typed in the header
       });
 
 
+      // contact.js
+
+// Replace this with your actual EmailJS user ID (Public Key)
+const EMAILJS_USER_ID = "lCiqTH89c0WBh-ZAL"; // example: "sV3uG2gK3AbCz"
+
+// Replace with your EmailJS service ID and template ID
+const SERVICE_ID = "service_m35yhih";  // example: "default_service"
+
+(function () {
+    emailjs.init(EMAILJS_USER_ID);
+})();
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm(SERVICE_ID, this)
+            .then(() => {
+                alert("Message sent successfully!");
+                form.reset();
+            })
+            .catch((error) => {
+                console.error("EmailJS Error:", error);
+                alert("Oops! Something went wrong. Please try again.");
+            });
+    });
+});
+
+
+
         // Start typing effect when page loads
   window.onload = () => {
     typeText();
     typeIntro();
   };
-
-  src="https://cdn.emailjs.com/dist/email.min.js">
-
-  (function(){
-    emailjs.init("lCiqTH89c0WBh-ZAL");
-})();
-
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  emailjs.sendForm('service_m35yhih', this)
-      .then(() => {
-          alert("Message sent!");
-      }, (error) => {
-          alert("Failed to send message. Error: " + error);
-      });
-});
-  
