@@ -19,7 +19,7 @@ body {
 /* Header */
 header {
     top: 0;
-    left: 0;
+    left: 20px;
     display: flex;
     font-size: 2rem;
     font-family: "Silkscreen", sans-serif;
@@ -43,6 +43,7 @@ header {
 /* File Preview */
 .file-container {
     width: 1000px;
+    height: 200px;
     overflow: hidden;
     display: block;
     padding-top: 15%;
