@@ -347,6 +347,11 @@ footer {
         max-width: fit-content;
     }
 
+    .about-content img {
+        max-width: 150px;   /* Reduce image size for smaller screens */
+        margin-right: 15px; /* Adjust margin for smaller screens */
+    }
+
     .content-section {
         padding: 15px;
     }
