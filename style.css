@@ -298,7 +298,7 @@ footer {
         top: 60px;
         left: 0;
         z-index: 999;
-        height: auto;
+        height: max-content;
         margin-top: 5px;
     }
 
@@ -325,7 +325,7 @@ footer {
 
     /* Ensure the content below the menu moves down when it's open */
     body.show-nav-open {
-        margin-top: 80px; /* Push content down */
+        margin-top: 150px; /* Push content down */
     }
 
     /* Fix menu items to align right when not using mobile toggle */

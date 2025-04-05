@@ -13,7 +13,7 @@ const text = "My_Portfolio";  // The text to be typed in the header
             }
         }
 
-        const intro = "Hi! I'm Bhargava Malladi. I'm an engineer with fascination towards Physics and Robotics.";
+        const intro = "Hi! I'm Bhargava Malladi. I'm an engineer with fascination towards Robotics.";
         const fileContentElement = document.getElementById("file-content");
 
         let i = 0;
