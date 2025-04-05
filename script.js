@@ -71,10 +71,28 @@ const text = "My_Portfolio";  // The text to be typed in the header
           document.querySelector('.nav-list').classList.toggle('show');
           document.body.classList.toggle('show-nav-open');
       });
-      
+
 
         // Start typing effect when page loads
   window.onload = () => {
     typeText();
     typeIntro();
   };
+
+  src="https://cdn.emailjs.com/dist/email.min.js">
+
+  (function(){
+    emailjs.init("lCiqTH89c0WBh-ZAL");
+})();
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  emailjs.sendForm('service_m35yhih', this)
+      .then(() => {
+          alert("Message sent!");
+      }, (error) => {
+          alert("Failed to send message. Error: " + error);
+      });
+});
+  
