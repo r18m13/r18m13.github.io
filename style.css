@@ -1,19 +1,22 @@
 html {
-    scroll-behavior: smooth; /* Enables smooth scrolling */
+    scroll-behavior: smooth;
 }
 
 body {
     display: block;
-    max-width: fit-content;
+    max-width: 100%;
     background-attachment: fixed;
-    font-family: Arial, sans-serif;
     background-image: url('T5.jpg');
-    background-size: cover;  /* Makes the image cover the entire screen */
-    background-position: center;  /* Centers the image */
-    background-repeat: no-repeat;  /* Prevents the image from repeating */
-    color:rgb(215, 213, 248);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: rgb(215, 213, 248);
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+/* Header */
 header {
     top: 0;
     left: 0;
@@ -21,8 +24,7 @@ header {
     font-size: 2rem;
     font-family: "Silkscreen", sans-serif;
     font-weight: 400;
-    font-style: normal;
-    color: rgb(255, 255, 255);
+    color: #fff;
     padding: 20px;
     position: absolute;
 }
@@ -32,53 +34,68 @@ header {
     position: absolute;
 }
 
-.file-container {
-    width: 1000px;
-    overflow: hidden; /* prevent scrollbars from appearing */
-    display: block;
-    padding-top: 35%;
-    padding-left: 25%;
-    font-size: 3rem;
-    font-family: "Silkscreen", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
 #typed-text {
     display: inline-block;
-    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    white-space: nowrap;
     overflow: hidden;
 }
 
-
-nav ul {
-    display: flex;
-    position: relative;
-    top: 5px;
-    left: 60% ;
-    list-style: none;
-    font-style: normal;
+/* File Preview */
+.file-container {
+    width: 1000px;
+    overflow: hidden;
+    display: block;
+    padding-top: 15%;
+    padding-left: 25%;
+    font-size: 3rem;
+    font-family: "Silkscreen", sans-serif;
 }
 
+/* NAVIGATION BASE STYLES */
+nav {
+    width: 100%;
+    z-index: 1000;
+    background: transparent; /* Ensure the background is transparent */
+}
 
+/* Container aligns logo and menu toggle */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    width: 100%;
+}
 
+/* NAV LIST DEFAULT (DESKTOP) */
+.nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    left: 35%; /* Center the nav menu on desktop */
+}
+
+/* NAV TAB STYLES */
 .nav-tab {
-    color: white;
-    padding: 10px 10px;
-    margin: 0 10px;
     font-family: "Silkscreen", sans-serif;
-    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    margin: 0 20px;
+    font-size: 2rem;
     font-weight: 300;
     position: relative;
-    transition: color 0.3s, transform 0.3s ease; /* Smooth transition */
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s ease;
 }
 
 .nav-tab:hover {
-    color: #7802ff; /* Change text color on hover */
-    transform: scale(1.1); /* Slightly enlarge the tab */
+    color: #7802ff;
+    transform: scale(1.1);
 }
 
-/* Animated underline effect */
 .nav-tab::after {
     content: '';
     position: absolute;
@@ -87,48 +104,249 @@ nav ul {
     width: 0%;
     height: 3px;
     background-color: #7802ff;
-    transition: width 0.3s ease; /* Animate the width of the underline */
+    transition: width 0.3s ease;
 }
 
 .nav-tab:hover::after {
-    width: 100%; /* Expand the underline on hover */
+    width: 100%;
 }
 
+.nav-tab.active {
+    color: #7802ff;
+}
 
+/* HAMBURGER BUTTON */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Sections */
 .sec-container {
     scroll-snap-type: y mandatory;
-    height: 100vh;
-    scroll-padding-top: 60px; /* Adjust for nav height */
+    font-family: "Chakra Petch", sans-serif;
+    font-optical-sizing: auto;
+    justify-content: space-evenly;
+    padding-left: 22.5%;
+    padding-top: 20%;
+    scroll-padding-top: 60px;
+    max-height: fit-content;
 }
 
+.content-section {
+    max-width: 1000px;
+    margin-bottom: 100px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+}
 
-.panel {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 2rem;
-    background: #f0f0f0;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-  }
-  
-  .panel.visible {
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 1;
-  }
-  
-main { 
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* About */
+.about-content p {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.about-content img {
+    max-width: 250px;
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Projects */
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.project-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+}
+
+.project-box img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Skills */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.skill-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Contact */
+.contact-form {
+    margin-top: 20px;
+}
+
+.contact-form form {
     display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    font-family: "Silkscreen", sans-serif;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.contact-form button {
+    background-color: #fff;
+    color: #000;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #ccc;
+}
+
+.contact-info {
+    margin-top: 30px;
+    font-size: 1rem;
+}
+
+.social-links a {
+    color: #fff;
+    margin-right: 15px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #7802ff;
+}
+
+/* Footer */
 footer {
-    position: absolute;
-    padding-top: 75%;
-    display: fit-content;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #fff;
     font-size: xx-small;
 }
 
+/* 📱 RESPONSIVE NAV - SMALLER SCREENS */
+@media (max-width: 1200px) {
+    /* Ensure nav menu stays transparent */
+    nav {
+        background-color: transparent !important; /* Ensure transparency */
+    }
+
+    /* Show hamburger icon */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        z-index: 1001;
+    }
+
+    /* Hiding the menu by default */
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        text-align: right; /* Align menu items to the right */
+        justify-content: center;
+        width: max-content;
+        padding: 20px 0;
+        background-color: rgba(0, 0, 0, 0.4); /* semi-transparent background */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 999;
+        height: auto;
+        margin-top: 5px;
+    }
+
+    /* Toggle menu visibility */
+    .nav-list.show {
+        display: flex;
+    }
+
+    /* Adjusting nav tabs on smaller screens */
+    .nav-tab {
+        font-size: 1.5rem;
+        margin: 10px auto;
+        color: white;
+    }
+
+    /* Align content below nav to the right */
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Ensure the content below the menu moves down when it's open */
+    body.show-nav-open {
+        margin-top: 80px; /* Push content down */
+    }
+
+    /* Fix menu items to align right when not using mobile toggle */
+    .nav-list {
+        left: auto;
+        right: 20px; /* Align the menu items to the right */
+    }
+
+    /* Adjusting content positioning for smaller screens */
+    .sec-container {
+        padding-left: 5%;
+        padding-top: 10%;
+    }
+
+    .file-container {
+        padding-left: 10%;
+        padding-top: 30%;
+        font-size: 2rem;
+        max-width: fit-content;
+    }
+
+    .content-section {
+        padding: 15px;
+    }
+}

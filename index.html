@@ -3,34 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Website</title>
+    <title>My Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baumans&family=Bytesized&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Gravitas+One&family=Orbitron:wght@400..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bytesized&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bytesized&family=Gravitas+One&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baumans&family=Bytesized&family=Gravitas+One&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baumans&family=Bytesized&family=Gravitas+One&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="page-wrapper">
     <header>
         <div class="typing-container">
             <span id="typed-text"></span>
         </div>
     </header>
     <nav class="navigation">
-        <ul>
-            <li><a href="#About" class="nav-tab">About</a></li>
-            <li><a href="#Projects" class="nav-tab">Projects</a></li>
-            <li><a href="#Skills" class="nav-tab">Skills</a></li>
-            <li><a href="#Contact" class="nav-tab">Contact</a></li>
+        <div class="nav-container">
+          <button class="menu-toggle" id="menuToggle">&#9776;</button> <!-- hamburger icon -->
+          <ul class="nav-list" id="navList">
+            <li><button class="nav-tab active" data-target="About">About</button></li>
+            <li><button class="nav-tab" data-target="Projects">Projects</button></li>
+            <li><button class="nav-tab" data-target="Skills">Skills</button></li>
+            <li><button class="nav-tab" data-target="Contact">Contact</button></li>
         </ul>
+    </div>
     </nav>
     <section>
         <div class="file-container">
@@ -38,14 +33,122 @@
         </div>
     </section>
     <div class="sec-container">
-        <section id="About" class="panel-visible">Section 1</section>
-        <section id="Projects" class="panel">Section 2</section>
-        <section id="Skills" class="panel">Section 3</section>
-        <section id="Contact" class="panel">Section 4</section>
+        <section id="About" class="content-section">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="PXL_20240106_103706841.RAW-01.MP.COVER~2.jpg" alt="Profile Photo" style="float: left; margin-right: 20px; border-radius: 25%;">
+                <p>
+                    As a robotics and automation enthusiast, I am deeply fascinated by the endless possibilities these technologies offer in reshaping industries. 
+                </p>
+                <p>
+                    With a background in engineering and hands-on experience in designing and optimizing automated systems, I’m driven by the challenge of solving real-world problems through innovation and cutting-edge technology. 
+                </p>
+                <div style="clear: both;"></div>
+            </div>
+        </section>
+        
+        <section id="Projects" class="content-section">
+            <h2>My Projects</h2>
+            <p>Here are some of the projects I've worked on. Each represents a unique challenge and learning opportunity.</p>
+            
+            <div class="project-container">
+                <div class="project-box">
+                    <img src="/api/placeholder/300/200" alt="E-Commerce Website">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-featured online store built with React and Node.js, featuring user authentication, product management, and payment integration.</p>
+                    <p><strong>Technologies:</strong> React, Node.js, MongoDB, Stripe</p>
+                </div>
+                
+                <div class="project-box">
+                    <img src="/api/placeholder/300/200" alt="Weather App">
+                    <h3>Weather Forecast App</h3>
+                    <p>A responsive weather application that provides real-time weather updates and forecasts based on geolocation.</p>
+                    <p><strong>Technologies:</strong> JavaScript, HTML5, CSS3, Weather API</p>
+                </div>
+                
+                <div class="project-box">
+                    <img src="/api/placeholder/300/200" alt="Task Manager">
+                    <h3>Task Management System</h3>
+                    <p>A collaborative task manager that helps teams organize projects, assign tasks, and track progress.</p>
+                    <p><strong>Technologies:</strong> Vue.js, Firebase, Tailwind CSS</p>
+                </div>
+                
+                <div class="project-box">
+                    <img src="/api/placeholder/300/200" alt="Portfolio Website">
+                    <h3>Portfolio Website</h3>
+                    <p>A personal portfolio website showcasing projects and skills, built with responsive design principles.</p>
+                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+                </div>
+                
+                <div class="project-box">
+                    <img src="/api/placeholder/300/200" alt="Recipe App">
+                    <h3>Recipe Finder</h3>
+                    <p>An application that helps users find recipes based on available ingredients, dietary restrictions, and cooking time.</p>
+                    <p><strong>Technologies:</strong> React Native, Redux, Recipe API</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="Skills" class="content-section">
+            <h2>Skills & Expertise</h2>
+            <p>I've developed expertise in various technologies and methodologies throughout my career.</p>
+            
+            <h3>Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-item">HTML5</div>
+                <div class="skill-item">CSS3</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">React</div>
+                <div class="skill-item">Node.js</div>
+                <div class="skill-item">MongoDB</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">Git</div>
+                <div class="skill-item">Responsive Design</div>
+                <div class="skill-item">API Integration</div>
+                <div class="skill-item">UI/UX Design</div>
+                <div class="skill-item">Agile Development</div>
+            </div>
+            
+            <h3>Soft Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-item">Problem Solving</div>
+                <div class="skill-item">Team Collaboration</div>
+                <div class="skill-item">Project Management</div>
+                <div class="skill-item">Communication</div>
+                <div class="skill-item">Time Management</div>
+                <div class="skill-item">Adaptability</div>
+            </div>
+        </section>
+        
+        <section id="Contact" class="content-section">
+            <h2>Get In Touch</h2>
+            <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
+            
+            <div class="contact-form">
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <p>Email: your.email@example.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <div class="social-links">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+        </section>
     </div>
     <footer>
-        <p>#R18M13</p> 
+        <p>R18M13</p> 
     </footer>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
