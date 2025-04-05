@@ -1,10 +1,15 @@
+html {
+    scroll-behavior: smooth; /* Enables smooth scrolling */
+}
+
 body {
-    display: flex;
-    min-height: 175vh;
+    display: block;
+    max-width: fit-content;
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
     background-image: url('T5.jpg');
     background-size: cover;  /* Makes the image cover the entire screen */
-    background-position: center center;  /* Centers the image */
+    background-position: center;  /* Centers the image */
     background-repeat: no-repeat;  /* Prevents the image from repeating */
     color:rgb(215, 213, 248);
 }
@@ -27,6 +32,18 @@ header {
     position: absolute;
 }
 
+.file-container {
+    width: 1000px;
+    overflow: hidden; /* prevent scrollbars from appearing */
+    display: block;
+    padding-top: 35%;
+    padding-left: 25%;
+    font-size: 3rem;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 #typed-text {
     display: inline-block;
     white-space: nowrap; /* Prevents the text from wrapping to the next line */
@@ -38,37 +55,80 @@ nav ul {
     display: flex;
     position: relative;
     top: 5px;
-    left: 100% ;
+    left: 60% ;
     list-style: none;
-}
-
-nav ul li {
-    display:inline-block;
-    margin: 0 15px;
-}
-
-nav ul li c {
-    font-family: "Silkscreen", sans-serif;
     font-style: normal;
-    font-size: 1.5rem;
-    color: #ffffff;
 }
 
-main {
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-}
 
-button {
-    align-self: center;
-    background: #0073e6;
+
+.nav-tab {
     color: white;
-    border: none;
-    cursor: pointer;
+    padding: 10px 10px;
+    margin: 0 10px;
+    font-family: "Silkscreen", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    position: relative;
+    transition: color 0.3s, transform 0.3s ease; /* Smooth transition */
 }
 
-button:hover {
-    background: #005bb5;
+.nav-tab:hover {
+    color: #7802ff; /* Change text color on hover */
+    transform: scale(1.1); /* Slightly enlarge the tab */
+}
+
+/* Animated underline effect */
+.nav-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #7802ff;
+    transition: width 0.3s ease; /* Animate the width of the underline */
+}
+
+.nav-tab:hover::after {
+    width: 100%; /* Expand the underline on hover */
+}
+
+
+.sec-container {
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    scroll-padding-top: 60px; /* Adjust for nav height */
+}
+
+
+.panel {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem;
+    background: #f0f0f0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  
+  .panel.visible {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+  }
+  
+main { 
+    display: flex;
+}
+
+footer {
+    position: absolute;
+    padding-top: 75%;
+    display: fit-content;
+    font-size: xx-small;
 }
 
