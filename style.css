@@ -142,7 +142,7 @@ nav {
     max-width: 1000px;
     margin-bottom: 100px;
     padding: 30px;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 12px;
 }
 
@@ -174,7 +174,7 @@ nav {
 }
 
 .project-box {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     border-radius: 10px;
     transition: transform 0.2s;
@@ -199,7 +199,7 @@ nav {
 }
 
 .skill-item {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 10px;
     border-radius: 8px;
     text-align: center;
