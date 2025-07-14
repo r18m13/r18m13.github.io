@@ -10,7 +10,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: rgb(215, 213, 248);
+    color: rgb(44, 44, 44);
     padding: 0;
     margin: 0;
     overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -24,7 +24,7 @@ header {
     font-size: 2rem;
     font-family: "Silkscreen", sans-serif;
     font-weight: 400;
-    color: #fff;
+    color: #3a3a3a;
     padding: 20px;
     position: absolute;
 }
@@ -83,7 +83,7 @@ nav {
     font-family: "Silkscreen", sans-serif;
     background: transparent;
     border: none;
-    color: #fff;
+    color: #3a3a3a;
     margin: 0 20px;
     font-size: 2rem;
     font-weight: 300;
@@ -93,7 +93,7 @@ nav {
 }
 
 .nav-tab:hover {
-    color: #9c9c9c;
+    color: #3a3a3a;
     transform: scale(1.1);
 }
 
@@ -104,7 +104,7 @@ nav {
     left: 0;
     width: 0%;
     height: 3px;
-    background-color: #afafaf;
+    background-color: #3a3a3a;
     transition: width 0.3s ease;
 }
 
@@ -113,7 +113,7 @@ nav {
 }
 
 .nav-tab.active {
-    color: #acacac;
+    color: #3a3a3a;
 }
 
 /* HAMBURGER BUTTON */
@@ -142,14 +142,14 @@ nav {
     max-width: 1000px;
     margin-bottom: 100px;
     padding: 30px;
-    background: rgba(184, 184, 184, 0.7);
+    background: rgba(78, 78, 78, 0.7);
     border-radius: 12px;
 }
 
 .content-section h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #fff;
+    color: #3a3a3a;
 }
 
 /* About */
@@ -174,7 +174,7 @@ nav {
 }
 
 .project-box {
-    background-color: rgba(158, 158, 158, 0.7);
+    background-color: rgba(58, 58, 58, 0.7);
     padding: 20px;
     border-radius: 10px;
     transition: transform 0.2s;
@@ -199,7 +199,7 @@ nav {
 }
 
 .skill-item {
-    background-color: rgba(203, 203, 203, 0.7);
+    background-color: rgba(56, 56, 56, 0.7);
     padding: 10px;
     border-radius: 8px;
     text-align: center;
@@ -227,8 +227,8 @@ nav {
 }
 
 .contact-form button {
-    background-color: #fff;
-    color: #bcbcbc;
+    background-color: #3a3a3a;
+    color: #000000;
     font-family: "Silkscreen", sans-serif;
     font-weight: bold;
     border: none;
@@ -239,7 +239,7 @@ nav {
 }
 
 .contact-form button:hover {
-    background-color: #ccc;
+    background-color: #3a3a3a;
 }
 
 .contact-info {
@@ -248,14 +248,14 @@ nav {
 }
 
 .social-links a {
-    color: #fff;
+    color: #3a3a3a;
     margin-right: 15px;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .social-links a:hover {
-    color: #b4b4b4;
+    color: #3a3a3a;
 }
 
 /* Footer */
