@@ -181,14 +181,14 @@ nav {
 
 .project-box a {
     display: inline-block;
-    color:#6696d2;
+    color:#ffffff;
     text-decoration: none;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: color 0.3s;
+
 }
 
 .project-box a:hover {
-    transform: scale(1.1);
-    color: #fff;
+    color:#6696d2;
 }
 
 
