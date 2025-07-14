@@ -50,7 +50,7 @@
         
         <section id="Projects" class="content-section">
             <h2>My Projects</h2>
-            <p>Here are some of the projects I've worked on. Each represents a unique challenge and learning opportunity.</p>
+            <p> <strong> Here are some of the projects I've worked on. Each represents a unique challenge and learning opportunity. </strong></p>
             
             <div class="project-container">
                 <div class="project-box">
@@ -58,30 +58,41 @@
                     <p>A system that establishes a collaborative network for a drone and a UGV to communicate with each other.</p>
                     <p>The drone is used for identification of weeds and the relative position is communicated with the UGV</p>
                     <P>The UGV is equipped with a robotic manipulator which is used to uproot the weeds.</P>
-                    <p><strong>Technologies:</strong> ROS, Networking, Image Processing, Image Recognition, Machine Learning, Python, Linux, Socket Programming.</p>
-                    <a href = "https://www.linkedin.com/posts/bhargavamalladi_robotics-autonomoussystems-automation-activity-7288342556973707266-yaBA?utm_source=share&utm_medium=member_desktop&rcm=ACoAADxHgNUB8lE5wb8DVtM0ej0b3T4KBVvQTIM">LINK</a>
+                    <p><strong>Technologies:</strong> <strong> ROS, Networking, Path Planning, Image Processing, Image Recognition, Machine Learning, Python, Linux, Socket Programming. </strong></p>
+                    <a href = "https://www.linkedin.com/posts/bhargavamalladi_robotics-autonomoussystems-automation-activity-7288342556973707266-yaBA?utm_source=share&utm_medium=member_desktop&rcm=ACoAADxHgNUB8lE5wb8DVtM0ej0b3T4KBVvQTIM">POST</a> 
+                </div>
+
+                <div class="project-box">
+                    <h3>Smart Arm and Gripper</h3>
+                    <p>Implemented a Smart arm system that comprises of a UR5e robotic arm, a Robotiq 3 - Finger Gripper mounted on the arm.</p>
+                    <p>The project involves utilzing a ZED Stereo Camera to detect objects and a Jetson Orin Nano for computation.</p>
+                    <p>Deployed a Weed detection model on the Jetson Orin Nano, that is meant to be used by ZED SDK to identify the weeds and return the 3D coordinates.</p>
+                    <p>These 3D coordinates are fed to the UR5e computer via sockets. The UR5e is programmed to perform Inverse Kinematics on these coordinates, on an offset coordinates.</p>
+                    <p>These coordinates take into account the position of the camera and the base of the UR5e arm, and then the arm is given the command to move, the gripper mounted is used to upgroot the weeds.</p>
+                    <p><strong>Technologies:</strong> <strong> Python, ROS, Depth Perception, Inverse Kinematics, Sockets, Image Processing, Networking. </strong></p>
+                    <a href = "https://github.com/r18m13/Smart-Arm-and-Gripper.git">GITHUB</a>
+                </div>
+
+                <div class="project-box">
+                    <h3>Robot Trajectory Map Software using UML</h3>
+                    <p>A UML based software developed for analyzing a video and generate a map which displays the Trajectory of the robot.</p>
+                    <p><strong>Technologies:</strong> <strong> UML, Python, File Handling, Image Processing, SDLC, ORB, Feature Extraction. </strong></p>
+                    <a href = "https://github.com/r18m13/Map-Software">GITHUB</a>
+                </div>
+
+                <div class="project-box">
+                    <h3>Wall-Climbing Robot</h3>
+                    <p>A quadruped robot equipped with magnetic adhesion which triggers periodically to simulate movement.</p>
+                    <p><strong>Technologies:</strong> <strong> Arduino, Power Management, Research, Embedded C,  Interfacing and Assembly, Material selection. </strong></p>
+                    <a href = "https://ieeexplore.ieee.org/document/10193189">IEEE</a>
                 </div>
                 
                 <div class="project-box">
                     <h3>Design of Quardruped Robot</h3>
                     <p>Designed a quadruped robot model in SolidWorks for omnidirectional movement with 3DOF.</p>
-                    <p><strong>Technologies:</strong> SolidWorks, Autodesk Fusion 360, 3D Printing.</p>
-                    <a href = "https://ieeexplore.ieee.org/document/10157121">LINK</a>
-                </div>
-                
-                <div class="project-box">
-                    <h3>Wall-Climbing Robot</h3>
-                    <p>A quadruped robot equipped with magnetic adhesion which triggers periodically to simulate movement.</p>
-                    <p><strong>Technologies:</strong> Arduino, Power Management, Research, Embedded C,  Interfacing and Assembly, Material selection.</p>
-                    <a href = "https://ieeexplore.ieee.org/document/10193189">LINK</a>
-                </div>
-                
-                <div class="project-box">
-                    <h3>Robot Trajectory Map Software using UML</h3>
-                    <p>A UML based software developed for analyzing a video and generate a map which displays the Trajectory of the robot.</p>
-                    <p><strong>Technologies:</strong> UML, Python, File Handling, Image Processing, SDLC, ORB, Feature Extraction.</p>
-                    <a href = "https://github.com/r18m13/Map-Software">LINK</a>
-                </div>
+                    <p><strong>Technologies:</strong> <strong> SolidWorks, Autodesk Fusion 360, 3D Printing. </strong></p>
+                    <a href = "https://ieeexplore.ieee.org/document/10157121">IEEE</a>
+                </div>           
                 
             </div>
         </section>
