@@ -179,6 +179,19 @@ nav {
     transition: transform 0.2s;
 }
 
+.project-box a {
+    display: inline-block;
+    color:#6696d2;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.project-box a:hover {
+    transform: scale(1.1);
+    color: #fff;
+}
+
+
 .project-box:hover {
     transform: translateY(-5px);
 }
@@ -188,6 +201,8 @@ nav {
     border-radius: 8px;
     margin-bottom: 10px;
 }
+
+
 
 /* Skills */
 .skills-grid {
