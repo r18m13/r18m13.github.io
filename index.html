@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Bhargava Malladi - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -52,11 +52,11 @@
             animation: float 20s infinite ease-in-out;
         }
 
-        .node.red {
+        .node.blue {
             background: radial-gradient(circle, rgba(110, 181, 255, 0.7) 0%, rgba(110, 181, 255, 0.3) 50%, rgba(110, 181, 255, 0) 70%);
         }
 
-        .node.gold {
+        .node.purple {
             background: radial-gradient(circle, rgba(180, 159, 222, 0.7) 0%, rgba(180, 159, 222, 0.3) 50%, rgba(180, 159, 222, 0) 70%);
         }
 
@@ -138,7 +138,13 @@
             color: var(--text);
             font-size: 24px;
             cursor: pointer;
-            padding: 8px;
+            padding: 8px 12px;
+            z-index: 1001;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         nav a {
@@ -247,6 +253,7 @@
             text-decoration: none;
             color: inherit;
             display: block;
+            cursor: pointer;
         }
 
         .project-card::before {
@@ -401,30 +408,32 @@
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
                 flex-direction: column;
-                padding: 24px;
-                gap: 24px;
+                padding: 0;
+                gap: 0;
                 max-height: 0;
                 overflow: hidden;
                 opacity: 0;
-                transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                transition: max-height 0.3s ease, opacity 0.3s ease;
+                border-bottom: 0 solid rgba(255, 255, 255, 0.1);
             }
 
             nav.active {
                 max-height: 300px;
                 opacity: 1;
                 padding: 24px;
+                gap: 24px;
+                border-bottom-width: 1px;
             }
 
             .mobile-menu-btn {
                 display: block;
-                z-index: 1001;
             }
 
             nav a {
                 font-size: 18px;
                 display: block;
                 text-align: center;
+                padding: 8px;
             }
 
             .projects-grid {
@@ -460,7 +469,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">Your Name</a>
+                <a href="#" class="logo">Bhargava Malladi</a>
                 <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
                 <nav id="nav">
                     <a href="#work">Work</a>
@@ -473,8 +482,8 @@
 
     <div class="container">
         <section class="hero">
-            <h1>Engineering Excellence</h1>
-            <p>Building tomorrow's technology with precision and innovation</p>
+            <h1>Robotics Enthusiast</h1>
+            <p>Experimenting and Constructing</p>
             <a href="#work" class="cta-button">View Projects</a>
         </section>
     </div>
@@ -483,8 +492,8 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-eyebrow">FEATURED WORK</div>
-                <h2 class="section-title">Projects that matter</h2>
-                <p class="section-description">Innovative solutions designed to solve real-world problems at scale</p>
+                <h2 class="section-title">Engineering Meaningful Solutions</h2>
+                <p class="section-description">Innovative solutions designed to solve real-world problems</p>
             </div>
             <div class="projects-grid" id="projects"></div>
         </div>
@@ -495,9 +504,9 @@
             <div class="about-content">
                 <div class="about-image">⚡</div>
                 <div class="about-text">
-                    <h3>Passion meets precision</h3>
-                    <p>Software engineer specializing in backend systems, infrastructure automation, and distributed architecture. I thrive on solving complex challenges and creating tools that empower developers.</p>
-                    <p>With expertise across multiple domains, I focus on building scalable, maintainable systems that stand the test of time.</p>
+                    <h3>Engineering with Purpose</h3>
+                    <p>Robotics engineer skilled in intelligent automation, real‑time control systems, and precision mechatronics. I enjoy designing systems where software, hardware, and human interaction align to create seamless, reliable performance.</p>
+                    <p>With a strong foundation across control theory, embedded systems, and perception‑driven robotics, I focus on building solutions that are robust, and engineered to last.</p>
                 </div>
             </div>
         </div>
@@ -507,11 +516,11 @@
         <div class="container">
             <div class="contact-section">
                 <h2 class="section-title">Let's build something great</h2>
-                <p class="section-description">Get in touch to discuss projects, opportunities, or collaboration</p>
+                <p class="section-description">Get in touch to discuss projects and opportunities.</p>
                 <div class="contact-links">
-                    <a href="https://github.com/yourusername" class="contact-link">GitHub</a>
-                    <a href="https://linkedin.com/in/yourusername" class="contact-link">LinkedIn</a>
-                    <a href="mailto:your.email@example.com" class="contact-link">Email</a>
+                    <a href="https://github.com/r18m13" class="contact-link">GitHub</a>
+                    <a href="www.linkedin.com/in/bhargavamalladi" class="contact-link">LinkedIn</a>
+                    <a href="mailto:bhargavarammalladi@gmail.com" class="contact-link">Email</a>
                 </div>
             </div>
         </div>
@@ -519,7 +528,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            <p>&copy; 2025 Bhargava Malladi. All rights reserved.</p>
         </div>
     </footer>
 
@@ -530,7 +539,7 @@
         
         for (let i = 0; i < nodeCount; i++) {
             const node = document.createElement('div');
-            node.className = `node ${i % 2 === 0 ? 'red' : 'gold'}`;
+            node.className = `node ${i % 2 === 0 ? 'blue' : 'purple'}`;
             
             const size = Math.random() * 200 + 100;
             node.style.width = `${size}px`;
@@ -538,7 +547,6 @@
             node.style.left = `${Math.random() * 100}%`;
             node.style.top = `${Math.random() * 100}%`;
             
-            // Random movement values
             node.style.setProperty('--tx1', `${(Math.random() - 0.5) * 400}px`);
             node.style.setProperty('--ty1', `${(Math.random() - 0.5) * 400}px`);
             node.style.setProperty('--tx2', `${(Math.random() - 0.5) * 600}px`);
@@ -552,42 +560,43 @@
             animatedBg.appendChild(node);
         }
 
+        // Projects data - update the links to point to your /projects/description/ folder
         const projects = [
             {
-                title: "Distributed Task Queue",
+                title: "Real‑Time VR Teleoperation with Haptic‑Enhanced Robotic Control",
                 description: "High-performance task queue system handling 10M+ jobs daily with advanced scheduling and fault tolerance.",
                 tags: ["Python", "Redis", "Docker", "AWS"],
-                link: "/projects/task-queue.html"
+                link: "./projects/description/task-queue.html"
             },
             {
                 title: "Infrastructure Automation",
                 description: "Enterprise-grade CLI tool streamlining deployment pipelines and cloud infrastructure provisioning.",
                 tags: ["Go", "Terraform", "Kubernetes"],
-                link: "/projects/infrastructure-automation.html"
+                link: "./projects/description/infrastructure-automation.html"
             },
             {
                 title: "Real-time Analytics Engine",
                 description: "Scalable data processing platform delivering real-time insights and system metrics visualization.",
                 tags: ["Node.js", "React", "PostgreSQL", "WebSocket"],
-                link: "/projects/analytics-engine.html"
+                link: "./projects/description/analytics-engine.html"
             },
             {
                 title: "API Gateway",
                 description: "Custom-built gateway featuring intelligent rate limiting, authentication, and dynamic request routing.",
                 tags: ["Rust", "Redis", "Docker"],
-                link: "/projects/api-gateway.html"
+                link: "./projects/description/api-gateway.html"
             },
             {
                 title: "Zero-Downtime Migration Tool",
                 description: "Production-grade database migration system ensuring seamless transitions at enterprise scale.",
                 tags: ["Python", "PostgreSQL", "MySQL"],
-                link: "/projects/migration-tool.html"
+                link: "./projects/description/migration-tool.html"
             },
             {
                 title: "Observability Platform",
                 description: "Comprehensive monitoring solution with advanced alerting and custom metric visualization.",
                 tags: ["Prometheus", "Grafana", "Go"],
-                link: "/projects/observability-platform.html"
+                link: "./projects/description/observability-platform.html"
             }
         ];
 
@@ -614,18 +623,33 @@
         const menuBtn = document.getElementById('menuBtn');
         const nav = document.getElementById('nav');
         
-        menuBtn.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            menuBtn.textContent = nav.classList.contains('active') ? '✕' : '☰';
-        });
-
-        // Close menu when clicking nav links
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                menuBtn.textContent = '☰';
+        if (menuBtn && nav) {
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Menu button clicked');
+                nav.classList.toggle('active');
+                this.textContent = nav.classList.contains('active') ? '✕' : '☰';
             });
-        });
+
+            // Close menu when clicking nav links
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    menuBtn.textContent = '☰';
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (nav.classList.contains('active') && 
+                    !nav.contains(e.target) && 
+                    !menuBtn.contains(e.target)) {
+                    nav.classList.remove('active');
+                    menuBtn.textContent = '☰';
+                }
+            });
+        }
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -636,14 +660,6 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!nav.contains(e.target) && !menuBtn.contains(e.target) && nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                menuBtn.textContent = '☰';
-            }
         });
     </script>
 </body>
