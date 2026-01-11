@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real‑Time VR Teleoperation with Haptic‑Enhanced Robotic Control - Bhargava Malladi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #000000;
+            --surface: rgba(29, 29, 31, 0.7);
+            --surface-elevated: rgba(45, 45, 47, 0.8);
+            --text: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --accent-blue: #6eb5ff;
+            --accent-purple: #b49fde;
+            --accent-gradient: linear-gradient(135deg, #6eb5ff 0%, #b49fde 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .node {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .node.blue {
+            background: radial-gradient(circle, rgba(110, 181, 255, 0.7) 0%, rgba(110, 181, 255, 0.3) 50%, rgba(110, 181, 255, 0) 70%);
+        }
+
+        .node.purple {
+            background: radial-gradient(circle, rgba(180, 159, 222, 0.7) 0%, rgba(180, 159, 222, 0.3) 50%, rgba(180, 159, 222, 0) 70%);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(var(--tx1), var(--ty1)) scale(1.1);
+            }
+            50% {
+                transform: translate(var(--tx2), var(--ty2)) scale(0.9);
+            }
+            75% {
+                transform: translate(var(--tx3), var(--ty3)) scale(1.05);
+            }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(80px);
+            -webkit-backdrop-filter: blur(80px);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+
+        .back-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .project-hero {
+            padding: clamp(60px, 15vw, 100px) 0 clamp(40px, 10vw, 60px);
+        }
+
+        .project-category {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-size: clamp(40px, 8vw, 64px);
+            font-weight: 600;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .project-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-secondary);
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin: clamp(40px, 8vw, 60px) 0;
+            padding: clamp(32px, 5vw, 48px);
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+        }
+
+        .meta-item h3 {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-item p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 6px 14px;
+            background: rgba(110, 181, 255, 0.15);
+            color: #8dc5ff;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .project-image {
+            width: 100%;
+            height: clamp(450px, 50vw, 500px);
+            background: var(--accent-gradient);
+            border-radius: 18px;
+            margin: clamp(40px, 8vw, 60px) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(60px, 10vw, 100px);
+            opacity: 0.3;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-section {
+            margin: clamp(60px, 12vw, 100px) 0;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 600;
+            margin-bottom: clamp(20px, 4vw, 32px);
+            letter-spacing: -1px;
+        }
+
+        .content-section p {
+            font-size: clamp(16px, 2.5vw, 19px);
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .content-section h3 {
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 600;
+            margin: clamp(32px, 6vw, 48px) 0 clamp(16px, 3vw, 24px);
+            letter-spacing: -0.5px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 24px;
+            margin: clamp(32px, 6vw, 48px) 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: clamp(24px, 4vw, 32px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(110, 181, 255, 0.4);
+        }
+
+        .feature-card h4 {
+            font-size: clamp(18px, 3vw, 22px);
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--accent-blue);
+        }
+
+        .feature-card p {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .code-block {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: clamp(20px, 4vw, 32px);
+            margin: clamp(24px, 5vw, 32px) 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(13px, 2vw, 15px);
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: clamp(48px, 10vw, 80px) clamp(32px, 6vw, 48px);
+            text-align: center;
+            margin: clamp(80px, 15vw, 120px) 0;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px clamp(24px, 4vw, 32px);
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: clamp(15px, 2vw, 17px);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(110, 181, 255, 0.35);
+        }
+
+        .btn-secondary {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-blue);
+            background: rgba(110, 181, 255, 0.12);
+        }
+
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background" id="animatedBg"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="back-link">← Back to Portfolio</a>
+                <a href="../index.html" class="logo">Bhargava Malladi</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="project-hero">
+            <div class="project-category">Featured Project</div>
+            <h1 class="project-title">Real‑Time VR Teleoperation with Haptic‑Enhanced Robotic Control</h1>
+            <p class="project-subtitle">An immersive VR‑haptic teleoperation system enabling intuitive, low‑latency robotic control with precise feedback, seamless calibration, and real‑time responsiveness.</p>
+        </section>
+
+        <div class="project-meta">
+            <div class="meta-item">
+                <h3>Role</h3>
+                <p>Personal Project</p>
+            </div>
+            <div class="meta-item">
+                <h3>Timeline</h3>
+                <p>8 Months</p>
+            </div>
+            <div class="meta-item">
+                <h3>Year</h3>
+                <p>2025</p>
+            </div>
+            <div class="meta-item">
+                <h3>Technologies</h3>
+                <div class="tags">
+                    <span class="tag">ROS(Robot Operating System)</span>
+                    <span class="tag">Unity</span>
+                    <span class="tag">RTOS</span>
+                    <span class="tag">VR</span>
+                    <span class="tag">Haptics</span>
+                    <span class="tag">Robotics</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-image" style="background-image: url('../images/VR.png'); background-size: cover; background-position: center; opacity: 1;">
+        </div>
+        <video autoplay muted loop playsinline>
+            <source src="../images/Sim.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <section class="content-section">
+            <h2 class="section-title">Overview</h2>
+            <p>The VR‑haptic teleoperation system was developed to address the challenge of controlling a robotic arm intuitively and responsively in immersive environments. Traditional interfaces often lack natural feedback and precise motion mapping, making fine manipulation difficult. By combining VR visualization with force‑based interaction, the goal was to create a control experience that feels fluid, accurate, and human‑centric.</p>
+            <p>The solution integrates a Unity‑based OpenXR environment for real‑time 3D visualization, paired with a Novint Falcon haptic device that provides high‑fidelity force feedback. A custom control pipeline handles workspace calibration, motion scaling, and low‑latency pose updates to ensure smooth end‑effector manipulation. The entire system is engineered for responsiveness, stability, and ease of experimentation, resulting in a polished, intuitive teleoperation experience.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Immersive Visualization</h4>
+                    <p>Unity‑based OpenXR environment provides real‑time 3D rendering of the robotic arm for intuitive spatial awareness.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Haptic Feedback</h4>
+                    <p>Novint Falcon delivers precise force cues, enabling natural interaction and improved manipulation accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>ROS‑Integrated Communication</h4>
+                    <p>ROS–TCP–Connector plugin enables reliable bidirectional communication between Unity and the robot’s ROS ecosystem.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Workspace Calibration</h4>
+                    <p>Automatic calibration aligns the haptic device workspace with the robot’s operational space for consistent control.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Robust Teleoperation Loop</h4>
+                    <p>Stable, fault‑tolerant control loop maintains responsiveness even under rapid or complex user inputs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Technical Implementation</h2>
+            <h3>Architecture</h3>
+            <p>The teleoperation system integrates Unity’s OpenXR framework with ROS using the ROS–TCP–Connector plugin to enable real‑time communication between the VR environment and the robotic arm. Unity handles immersive visualization and user input, while ROS manages robot kinematics, control commands, and state feedback. The Novint Falcon haptic device is interfaced through a custom Unity plugin, providing force feedback synchronized with robot interactions.</p>
+            <p>A calibration module aligns the Falcon’s physical workspace with the robot’s coordinate frame, and motion scaling logic adjusts user movements for both fine manipulation and large‑range tasks. The system maintains continuous bidirectional messaging to ensure smooth, responsive end‑effector control.</p>
+            <div class="code-block">
+                <p>Example ROS Publisher for Target Pose:</p>
+<span style="color: #b49fde;">import</span> rospy <br>
+<span style="color: #b49fde;">from</span> geometry_msgs.msg <span style="color: #b49fde;">import</span> PoseStamped <br><br>
+pub = rospy.Publisher(<span style="color: #6eb5ff;">'/teleop/target_pose'</span>, PoseStamped, queue_size=10) <br>
+rospy.init_node(<span style="color: #6eb5ff;">'vr_teleop_bridge'</span>) <br><br>
+pose = PoseStamped() <br>
+pose.header.frame_id = <span style="color: #6eb5ff;">"base_link"</span> <br>
+pose.pose.position.x = 0.42 <br>
+pose.pose.position.y = 0.10 <br>
+pose.pose.position.z = 0.55 <br><br>
+pub.publish(pose) <br>
+            </div>
+
+            <p>The system follows a modular, bidirectional communication architecture connecting Unity, ROS, and the haptic interface.</p>
+            <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
+                <li><strong>Unity (OpenXR Layer):</strong> Captures VR controller or Falcon input, renders the robotic arm in real time, and sends target poses to ROS.</li>
+                <li><strong>ROS Core:</strong> Receives pose commands, performs kinematic checks, and executes motion control on the robot.</li>
+                <li><strong>ROS–TCP–Connector:</strong> Bridges Unity and ROS using TCP messaging for reliable, low‑latency data exchange.</li>
+                <li><strong>Haptic Feedback Module:</strong> Computes force responses based on robot state or collisions and sends them back to the Falcon device.</li>
+                <li><strong>Calibration & Scaling Layer:</strong> Ensures consistent mapping between user motion and robot workspace.</li>
+            </ul>
+            <p style="margin-top: 15px;">A lightweight monitoring node tracks communication latency, dropped messages, and control loop stability to maintain system responsiveness.</p>
+
+            <h3>Performance Optimizations</h3>
+            <p>Several optimizations were implemented to achieve smooth, real‑time teleoperation:</p>
+            <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
+                <li><strong>Message Rate Tuning:</strong> Unity and ROS publish/subscribe rates were optimized to reduce jitter and maintain consistent motion updates.</li>
+                <li><strong>Efficient Pose Serialization:</strong> Compact data formats minimize bandwidth and reduce overhead in the Unity–ROS communication loop.</li>
+                <li><strong>Haptic Loop Optimization:</strong> Force feedback calculations run at a higher frequency to ensure crisp, realistic tactile responses.</li>
+            </ul>
+            <p style="margin-top: 15px;">These improvements collectively reduce latency, enhance control precision, and create a more natural teleoperation experience.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Results & Impact</h2>
+            <p>The system delivers highly responsive, intuitive robotic manipulation in VR, enabling users to control the robot with precision and confidence. Latency between user input and robot motion was reduced significantly, resulting in smoother end‑effector trajectories and more stable teleoperation.</p>
+            <p>The integration of haptic feedback dramatically improves user awareness of contact forces and environmental interactions, making delicate tasks easier to perform. The modular architecture also allows rapid experimentation with new control modes, scaling strategies, and robot configurations.</p>
+            <p>The monitoring tools have become essential for evaluating communication performance, ensuring consistent responsiveness, and enabling quick diagnosis of issues during testing or demos. Overall, the system provides a polished, immersive teleoperation experience that bridges VR, robotics, and haptics in a cohesive and impactful way.</p>
+        </section>
+
+        <div class="cta-section">
+            <h2>Interested in learning more?</h2>
+            <p class="project-subtitle">Check out the source code or get in touch to discuss the technical details.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/r18m13/VR_Haptic_Robot_Control.git" class="btn btn-primary">View on GitHub</a>
+                <a href="mailto:bhargavarammalladi@gmail.com" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated background nodes
+        const animatedBg = document.getElementById('animatedBg');
+        const nodeCount = 10;
+        
+        for (let i = 0; i < nodeCount; i++) {
+            const node = document.createElement('div');
+            node.className = `node ${i % 2 === 0 ? 'blue' : 'purple'}`;
+            
+            const size = Math.random() * 200 + 100;
+            node.style.width = `${size}px`;
+            node.style.height = `${size}px`;
+            node.style.left = `${Math.random() * 100}%`;
+            node.style.top = `${Math.random() * 100}%`;
+            
+            node.style.setProperty('--tx1', `${(Math.random() - 0.5) * 400}px`);
+            node.style.setProperty('--ty1', `${(Math.random() - 0.5) * 400}px`);
+            node.style.setProperty('--tx2', `${(Math.random() - 0.5) * 600}px`);
+            node.style.setProperty('--ty2', `${(Math.random() - 0.5) * 600}px`);
+            node.style.setProperty('--tx3', `${(Math.random() - 0.5) * 500}px`);
+            node.style.setProperty('--ty3', `${(Math.random() - 0.5) * 500}px`);
+            
+            node.style.animationDelay = `${Math.random() * -20}s`;
+            node.style.animationDuration = `${15 + Math.random() * 10}s`;
+            
+            animatedBg.appendChild(node);
+        }
+    </script>
+</body>
+</html>

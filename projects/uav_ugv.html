@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Drone-UGV System for Precision Agriculture - Bhargava Malladi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #000000;
+            --surface: rgba(29, 29, 31, 0.7);
+            --surface-elevated: rgba(45, 45, 47, 0.8);
+            --text: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --accent-blue: #6eb5ff;
+            --accent-purple: #b49fde;
+            --accent-gradient: linear-gradient(135deg, #6eb5ff 0%, #b49fde 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .node {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .node.blue {
+            background: radial-gradient(circle, rgba(110, 181, 255, 0.7) 0%, rgba(110, 181, 255, 0.3) 50%, rgba(110, 181, 255, 0) 70%);
+        }
+
+        .node.purple {
+            background: radial-gradient(circle, rgba(180, 159, 222, 0.7) 0%, rgba(180, 159, 222, 0.3) 50%, rgba(180, 159, 222, 0) 70%);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(var(--tx1), var(--ty1)) scale(1.1);
+            }
+            50% {
+                transform: translate(var(--tx2), var(--ty2)) scale(0.9);
+            }
+            75% {
+                transform: translate(var(--tx3), var(--ty3)) scale(1.05);
+            }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(80px);
+            -webkit-backdrop-filter: blur(80px);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+
+        .back-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .project-hero {
+            padding: clamp(60px, 15vw, 100px) 0 clamp(40px, 10vw, 60px);
+        }
+
+        .project-category {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-size: clamp(40px, 8vw, 64px);
+            font-weight: 600;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .project-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-secondary);
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin: clamp(40px, 8vw, 60px) 0;
+            padding: clamp(32px, 5vw, 48px);
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+        }
+
+        .meta-item h3 {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-item p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 6px 14px;
+            background: rgba(110, 181, 255, 0.15);
+            color: #8dc5ff;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .project-image {
+            width: 100%;
+            height: clamp(450px, 50vw, 500px);
+            background: var(--accent-gradient);
+            border-radius: 18px;
+            margin: clamp(40px, 8vw, 60px) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(60px, 10vw, 100px);
+            opacity: 0.3;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-section {
+            margin: clamp(60px, 12vw, 100px) 0;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 600;
+            margin-bottom: clamp(20px, 4vw, 32px);
+            letter-spacing: -1px;
+        }
+
+        .content-section p {
+            font-size: clamp(16px, 2.5vw, 19px);
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .content-section h3 {
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 600;
+            margin: clamp(32px, 6vw, 48px) 0 clamp(16px, 3vw, 24px);
+            letter-spacing: -0.5px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 24px;
+            margin: clamp(32px, 6vw, 48px) 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: clamp(24px, 4vw, 32px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(110, 181, 255, 0.4);
+        }
+
+        .feature-card h4 {
+            font-size: clamp(18px, 3vw, 22px);
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--accent-blue);
+        }
+
+        .feature-card p {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .code-block {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: clamp(20px, 4vw, 32px);
+            margin: clamp(24px, 5vw, 32px) 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(13px, 2vw, 15px);
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: clamp(48px, 10vw, 80px) clamp(32px, 6vw, 48px);
+            text-align: center;
+            margin: clamp(80px, 15vw, 120px) 0;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px clamp(24px, 4vw, 32px);
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: clamp(15px, 2vw, 17px);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(110, 181, 255, 0.35);
+        }
+
+        .btn-secondary {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-blue);
+            background: rgba(110, 181, 255, 0.12);
+        }
+
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background" id="animatedBg"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="back-link">← Back to Portfolio</a>
+                <a href="../index.html" class="logo">Bhargava Malladi</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="project-hero">
+            <div class="project-category">Featured Project</div>
+            <h1 class="project-title">Collaborative Drone-UGV System for Precision Agriculture</h1>
+            <p class="project-subtitle">A collaborative drone‑UGV system enabling efficient, autonomous precision agriculture with real‑time communication, coordinated operations, and targeted intervention.</p>
+        </section>
+
+        <div class="project-meta">
+            <div class="meta-item">
+                <h3>Role</h3>
+                <p>Researcher</p>
+            </div>
+            <div class="meta-item">
+                <h3>Timeline</h3>
+                <p>2 Years</p>
+            </div>
+            <div class="meta-item">
+                <h3>Year</h3>
+                <p>2024 - 2025</p>
+            </div>
+            <div class="meta-item">
+                <h3>Technologies</h3>
+                <div class="tags">
+                    <span class="tag">ROS(Robot Operating System)</span>
+                    <span class="tag">Sockets</span>
+                    <span class="tag">TCP/IP</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Scheduling</span>
+                    <span class="tag">Path-Planning</span>
+                    <span class="tag">Computer Vision</span>
+                    <span class="tag">Robotics</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-image" style="background-image: url('../images/Husky.png'); background-size: cover; background-position: center; opacity: 1;"></div>
+        <div class="project-image" style="background-image: url('../images/Removal.png'); background-size: cover; background-position: center; opacity: 1;"></div>
+
+        <section class="content-section">
+            <h2 class="section-title">Overview</h2>
+            <p>The collaborative drone‑UGV system was developed to address the challenge of performing precision agricultural tasks efficiently and autonomously. Traditional methods of crop monitoring and intervention are labor-intensive, time-consuming, and prone to inefficiency. By enabling drones to detect crop conditions and communicate positional data to UGVs equipped with robotic manipulators, the goal was to create a coordinated system that is accurate, responsive, and minimizes human effort.</p>
+            <p>The solution integrates real-time aerial sensing with ground-based robotic action. Drones capture high-resolution imagery to identify target areas, while a communication pipeline transmits precise positional data to the UGV. The UGV’s manipulator executes targeted interventions such as weeding or planting, guided by the drone’s input. The system is engineered for synchronized operation, low-latency communication, and reliable field performance, resulting in an effective, autonomous precision agriculture workflow.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Collaborative Drone‑UGV Coordination</h4>
+                    <p>Real-time communication allows drones to share positional and crop data with UGVs for synchronized action.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Autonomous Crop Monitoring</h4>
+                    <p>Drone equipped with NVIDIA Jetson Orin Nano processes high-resolution imagery onboard to identify crop conditions and target intervention areas efficiently.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Robotic Manipulator Control</h4>
+                    <p>UGV-mounted manipulator executes precise actions such as uprooting weeds or targeted planting based on drone input.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Low-Latency Communication</h4>
+                    <p>Fast, reliable data transfer ensures timely coordination between aerial and ground units for accurate field operations.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Integrated Precision Agriculture Workflow</h4>
+                    <p>System combines sensing, onboard processing, and action in a seamless, autonomous process optimized for efficiency and accuracy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+    <h2 class="section-title">Technical Implementation</h2>
+    <h3>Architecture</h3>
+    <p>The collaborative Drone‑UGV system integrates aerial weed detection with autonomous ground intervention. The drone is equipped with a Sony Alpha camera and NVIDIA Jetson Orin Nano for real-time weed detection and Ground Sampling Distance (GSD) calculation using GPS data via MAVLink. Detected weed coordinates are transmitted to the UGV for precise action.</p>
+    <p>The UGV, a Clearpath Husky A200, is equipped with a ZED stereo camera, 3D LiDAR, and a UR5e manipulator with a Robotiq gripper. A custom path-planning algorithm navigates the UGV to target GPS locations, applying positional offsets for accurate manipulator alignment. ROS handles localization, navigation, and sensor integration, while TCP ensures reliable communication between UGV and manipulator.</p>
+    
+    <div class="code-block">
+        <p>Example Python Socket Client for Sending Weed Coordinates to UGV:</p>
+<span style="color: #b49fde;">import</span> socket <br>
+<br>
+HOST = <span style="color: #6eb5ff;">'192.168.1.10'</span>  <span style="color: #a1a1a6;"># UGV IP address</span><br>
+PORT = 5005 <br>
+<br>
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) <br>
+s.connect((HOST, PORT)) <br>
+<br>
+weed_gps = <span style="color: #6eb5ff;">"34.12345,-118.12345"</span> <br>
+s.sendall(weed_gps.encode()) <br>
+s.close() <br>
+    </div>
+
+    <div class="code-block">
+        <p>Example URScript Command to Move UR5e to Target Pose:</p>
+<span style="color: #b49fde;">movej</span>([0.0, -1.57, 1.57, 0.0, 1.57, 0.0], a=1.2, v=0.25) <br>
+<span style="color: #b49fde;"># a</span> is acceleration, <span style="color: #b49fde;">v</span> is velocity<br>
+<span style="color: #b49fde;">movel</span>(p[0.5, 0.0, 0.2, 0, 3.14, 0], a=0.5, v=0.1) <br>
+<span style="color: #b49fde;"># Move linearly to precise position with offset for weed uprooting</span>
+    </div>
+
+    <p>The system follows a modular, bidirectional communication architecture connecting the drone, UGV, and manipulator:</p>
+    <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
+        <li><strong>Drone Layer:</strong> Captures high-resolution imagery, runs onboard inference on Jetson Orin Nano, calculates GSD, and sends GPS coordinates of detected weeds.</li>
+        <li><strong>UGV Layer:</strong> Clearpath Husky A200 receives GPS targets, localizes using ZED stereo camera, 3D LiDAR, and ROS, and navigates with custom path planning.</li>
+        <li><strong>Manipulator Layer:</strong> UR5e with Robotiq gripper executes precise interventions using positional offsets communicated over TCP.</li>
+        <li><strong>ROS Core:</strong> Manages navigation, manipulator control, and sensor fusion for reliable operation.</li>
+        <li><strong>Monitoring Module:</strong> Tracks latency, dropped messages, and system performance to maintain responsiveness.</li>
+    </ul>
+    <p style="margin-top: 15px;">The modular design allows seamless coordination between aerial detection, ground navigation, and manipulator execution for autonomous precision agriculture.</p>
+
+    <h3>Performance Optimizations</h3>
+    <p>Several optimizations were implemented to achieve smooth, autonomous operation:</p>
+    <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
+        <li><strong>Onboard Inference Efficiency:</strong> Jetson Orin Nano processes weed detection in real-time, minimizing latency.</li>
+        <li><strong>GPS to Manipulator Mapping:</strong> Positional offsets ensure UR5e gripper aligns accurately with target weeds.</li>
+        <li><strong>Path Planning Optimization:</strong> Custom algorithm computes obstacle-free routes using LiDAR and stereo vision data.</li>
+        <li><strong>Low-Latency Communication:</strong> TCP links between UGV and manipulator, and drone-to-UGV data transfer maintain synchronization.</li>
+        <li><strong>Sensor Fusion:</strong> ROS integrates GPS, LiDAR, and stereo vision for robust localization and navigation.</li>
+    </ul>
+    <p style="margin-top: 15px;">These optimizations collectively reduce latency, enhance intervention precision, and ensure reliable autonomous operation in agricultural fields.</p>
+</section>
+
+<section class="content-section">
+    <h2 class="section-title">Results & Impact</h2>
+    <p>The system provides a fully autonomous precision agriculture workflow: drones detect weeds, compute GPS locations with GSD, and transmit them to the UGV. The Husky A200 navigates autonomously to each target, and the UR5e manipulator with Robotiq gripper executes precise weed removal.</p>
+    <p>Low-latency communication ensures synchronized operation between aerial and ground units. Onboard Jetson inference reduces dependency on ground processing, while ROS-based sensor fusion provides robust GPS localization even in complex terrains.</p>
+    <p>The modular architecture supports rapid experimentation with new detection algorithms, manipulator strategies, and field layouts. Monitoring tools maintain reliability by tracking latency, message integrity, and system performance. Overall, the system demonstrates an effective, coordinated, and autonomous solution for precision agriculture.</p>
+</section>
+
+
+        <div class="cta-section">
+            <h2>Interested in learning more?</h2>
+            <p class="project-subtitle">Check out the source code or get in touch to discuss the technical details.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/r18m13/Smart-Arm-and-Gripper.git" class="btn btn-primary">View on GitHub</a>
+                <a href="mailto:bhargavarammalladi@gmail.com" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated background nodes
+        const animatedBg = document.getElementById('animatedBg');
+        const nodeCount = 10;
+        
+        for (let i = 0; i < nodeCount; i++) {
+            const node = document.createElement('div');
+            node.className = `node ${i % 2 === 0 ? 'blue' : 'purple'}`;
+            
+            const size = Math.random() * 200 + 100;
+            node.style.width = `${size}px`;
+            node.style.height = `${size}px`;
+            node.style.left = `${Math.random() * 100}%`;
+            node.style.top = `${Math.random() * 100}%`;
+            
+            node.style.setProperty('--tx1', `${(Math.random() - 0.5) * 400}px`);
+            node.style.setProperty('--ty1', `${(Math.random() - 0.5) * 400}px`);
+            node.style.setProperty('--tx2', `${(Math.random() - 0.5) * 600}px`);
+            node.style.setProperty('--ty2', `${(Math.random() - 0.5) * 600}px`);
+            node.style.setProperty('--tx3', `${(Math.random() - 0.5) * 500}px`);
+            node.style.setProperty('--ty3', `${(Math.random() - 0.5) * 500}px`);
+            
+            node.style.animationDelay = `${Math.random() * -20}s`;
+            node.style.animationDuration = `${15 + Math.random() * 10}s`;
+            
+            animatedBg.appendChild(node);
+        }
+    </script>
+</body>
+</html>
