@@ -3,170 +3,639 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <title>Your Name - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baumans&family=Bytesized&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Gravitas+One&family=Orbitron:wght@400..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #000000;
+            --surface: rgba(29, 29, 31, 0.7);
+            --surface-elevated: rgba(45, 45, 47, 0.8);
+            --text: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --accent-blue: #6eb5ff;
+            --accent-purple: #b49fde;
+            --accent-gradient: linear-gradient(135deg, #6eb5ff 0%, #b49fde 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .node {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .node.red {
+            background: radial-gradient(circle, rgba(110, 181, 255, 0.7) 0%, rgba(110, 181, 255, 0.3) 50%, rgba(110, 181, 255, 0) 70%);
+        }
+
+        .node.gold {
+            background: radial-gradient(circle, rgba(180, 159, 222, 0.7) 0%, rgba(180, 159, 222, 0.3) 50%, rgba(180, 159, 222, 0) 70%);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(var(--tx1), var(--ty1)) scale(1.1);
+            }
+            50% {
+                transform: translate(var(--tx2), var(--ty2)) scale(0.9);
+            }
+            75% {
+                transform: translate(var(--tx3), var(--ty3)) scale(1.05);
+            }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(80px);
+            -webkit-backdrop-filter: blur(80px);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .wide-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.3s;
+            opacity: 0.8;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        .hero {
+            padding: clamp(60px, 15vw, 100px) 0 clamp(80px, 20vw, 120px);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 600;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 3.5vw, 28px);
+            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 32px;
+            padding: 14px 28px;
+            background: var(--accent-gradient);
+            color: #000;
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(110, 181, 255, 0.35);
+        }
+
+        .section {
+            padding: clamp(40px, 10vw, 80px) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(40px, 8vw, 64px);
+        }
+
+        .section-eyebrow {
+            font-size: clamp(16px, 2.5vw, 21px);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 600;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-description {
+            font-size: clamp(16px, 2.5vw, 21px);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: clamp(32px, 5vw, 48px);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(110, 181, 255, 0.25);
+            border-color: rgba(110, 181, 255, 0.5);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-number {
+            font-size: 14px;
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .project-card h3 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: clamp(15px, 2vw, 17px);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 6px 14px;
+            background: rgba(110, 181, 255, 0.15);
+            color: #8dc5ff;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: clamp(32px, 8vw, 64px);
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: clamp(300px, 50vw, 400px);
+            background: var(--accent-gradient);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(80px, 15vw, 120px);
+            opacity: 0.3;
+        }
+
+        .about-text h3 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .about-text p {
+            font-size: clamp(16px, 2.5vw, 19px);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .contact-section {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: clamp(40px, 10vw, 80px) clamp(24px, 5vw, 48px);
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: clamp(16px, 3vw, 32px);
+            justify-content: center;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: clamp(15px, 2vw, 17px);
+            padding: 14px clamp(20px, 4vw, 32px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 980px;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-blue);
+            background: rgba(110, 181, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 48px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 24px;
+                gap: 24px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: transform 0.3s, opacity 0.3s;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav a {
+                font-size: 18px;
+            }
+
+            .projects-grid {
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+
+            .project-card {
+                padding: 24px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="page-wrapper">
+    <div class="animated-background" id="animatedBg"></div>
+    
     <header>
-        <div class="typing-container">
-            <span id="typed-text"></span>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Bhargava Malladi</a>
+                <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+                <nav id="nav">
+                    <a href="#work">Work</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
         </div>
     </header>
-    <nav class="navigation">
-        <div class="nav-container">
-          <button class="menu-toggle" id="menuToggle">&#9776;</button> <!-- hamburger icon -->
-          <ul class="nav-list" id="navList">
-            <li><button class="nav-tab active" data-target="About">About</button></li>
-            <li><button class="nav-tab" data-target="Projects">Projects</button></li>
-            <li><button class="nav-tab" data-target="Skills">Skills</button></li>
-            <li><button class="nav-tab" data-target="Contact">Contact</button></li>
-        </ul>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Engineering Excellence</h1>
+            <p>Building tomorrow's technology with precision and innovation</p>
+            <a href="#work" class="cta-button">View Projects</a>
+        </section>
     </div>
-    </nav>
-    <section>
-        <div class="file-container">
-            <span id="file-content"></span>
+
+    <section id="work" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">FEATURED WORK</div>
+                <h2 class="section-title">Projects that matter</h2>
+                <p class="section-description">Innovative solutions designed to solve real-world problems at scale</p>
+            </div>
+            <div class="projects-grid" id="projects"></div>
         </div>
     </section>
-    <div class="sec-container">
-        <section id="About" class="content-section">
-            <h2>About Me</h2>
+
+    <section id="about" class="section">
+        <div class="container">
             <div class="about-content">
-                <img src="PXL_20240106_103706841.RAW-01.MP.COVER~2.jpg" alt="Profile Photo" style="margin-right: 20px; border-radius: 25%;">
-                <p>
-                    As a robotics and automation enthusiast, I am deeply fascinated by the endless possibilities these technologies offer in reshaping industries. 
-                </p>
-                <p>
-                    With a background in engineering and hands-on experience in designing and optimizing automated systems, I’m driven by the challenge of solving real-world problems through innovation and cutting-edge technology. 
-                </p>
-                <div style="clear: both;"></div>
-            </div>
-        </section>
-        
-        <section id="Projects" class="content-section">
-            <h2>My Projects</h2>
-            <p> <strong> Here are some of the projects I've worked on. Each represents a unique challenge and learning opportunity. </strong></p>
-            
-            <div class="project-container">
-                <div class="project-box">
-                    <h3>UAV - UGV Collaboration for precision agriculture</h3>
-                    <p>A system that establishes a collaborative network for a drone and a UGV to communicate with each other.</p>
-                    <p>The drone is used for identification of weeds and the relative position is communicated with the UGV</p>
-                    <P>The UGV is equipped with a robotic manipulator which is used to uproot the weeds.</P>
-                    <p><strong>Technologies:</strong> <strong> ROS, Networking, Path Planning, Image Processing, Image Recognition, Machine Learning, Python, Linux, Socket Programming. </strong></p>
-                    <a href = "https://www.linkedin.com/posts/bhargavamalladi_robotics-autonomoussystems-automation-activity-7288342556973707266-yaBA?utm_source=share&utm_medium=member_desktop&rcm=ACoAADxHgNUB8lE5wb8DVtM0ej0b3T4KBVvQTIM">POST</a> 
+                <div class="about-image">⚡</div>
+                <div class="about-text">
+                    <h3>Passion meets precision</h3>
+                    <p>Software engineer specializing in backend systems, infrastructure automation, and distributed architecture. I thrive on solving complex challenges and creating tools that empower developers.</p>
+                    <p>With expertise across multiple domains, I focus on building scalable, maintainable systems that stand the test of time.</p>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="project-box">
-                    <h3>Smart Arm and Gripper</h3>
-                    <p>Implemented a Smart arm system that comprises of a UR5e robotic arm, a Robotiq 3 - Finger Gripper mounted on the arm.</p>
-                    <p>The project involves utilzing a ZED Stereo Camera to detect objects and a Jetson Orin Nano for computation.</p>
-                    <p>Deployed a Weed detection model on the Jetson Orin Nano, that is meant to be used by ZED SDK to identify the weeds and return the 3D coordinates.</p>
-                    <p>These 3D coordinates are fed to the UR5e computer via sockets. The UR5e is programmed to perform Inverse Kinematics on these coordinates, on an offset coordinates.</p>
-                    <p>These coordinates take into account the position of the camera and the base of the UR5e arm, and then the arm is given the command to move, the gripper mounted is used to upgroot the weeds.</p>
-                    <p><strong>Technologies:</strong> <strong> Python, ROS, Depth Perception, Inverse Kinematics, Sockets, Image Processing, Networking. </strong></p>
-                    <a href = "https://github.com/r18m13/Smart-Arm-and-Gripper.git">GITHUB</a>
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-section">
+                <h2 class="section-title">Let's build something great</h2>
+                <p class="section-description">Get in touch to discuss projects, opportunities, or collaboration</p>
+                <div class="contact-links">
+                    <a href="https://github.com/yourusername" class="contact-link">GitHub</a>
+                    <a href="https://linkedin.com/in/yourusername" class="contact-link">LinkedIn</a>
+                    <a href="mailto:your.email@example.com" class="contact-link">Email</a>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="project-box">
-                    <h3>Robot Trajectory Map Software using UML</h3>
-                    <p>A UML based software developed for analyzing a video and generate a map which displays the Trajectory of the robot.</p>
-                    <p><strong>Technologies:</strong> <strong> UML, Python, File Handling, Image Processing, SDLC, ORB, Feature Extraction. </strong></p>
-                    <a href = "https://github.com/r18m13/Map-Software">GITHUB</a>
-                </div>
-
-                <div class="project-box">
-                    <h3>Wall-Climbing Robot</h3>
-                    <p>A quadruped robot equipped with magnetic adhesion which triggers periodically to simulate movement.</p>
-                    <p><strong>Technologies:</strong> <strong> Arduino, Power Management, Research, Embedded C,  Interfacing and Assembly, Material selection. </strong></p>
-                    <a href = "https://ieeexplore.ieee.org/document/10193189">IEEE</a>
-                </div>
-                
-                <div class="project-box">
-                    <h3>Design of Quardruped Robot</h3>
-                    <p>Designed a quadruped robot model in SolidWorks for omnidirectional movement with 3DOF.</p>
-                    <p><strong>Technologies:</strong> <strong> SolidWorks, Autodesk Fusion 360, 3D Printing. </strong></p>
-                    <a href = "https://ieeexplore.ieee.org/document/10157121">IEEE</a>
-                </div>           
-                
-            </div>
-        </section>
-        
-        <section id="Skills" class="content-section">
-            <h2>Skills</h2>
-            <h3>Applications</h3>
-            <div class="skills-grid">
-                <div class="skill-item">Verilog HDL</div>
-                <div class="skill-item">LTSpice</div>
-                <div class="skill-item">MATLAB & Simulink</div>
-                <div class="skill-item">RVIZ</div>
-                <div class="skill-item">Gazebo</div>
-                <div class="skill-item">Autodesk EAGLE</div>
-                <div class="skill-item">Fusion 360</div>
-                <div class="skill-item">Arduino IDE</div>
-                <div class="skill-item">Blender</div>
-                <div class="skill-item">Figma</div>
-            </div>
-            
-            <h3>Programming</h3>
-            <div class="skills-grid">
-                <div class="skill-item">C/C++</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">MATLAB</div>
-                <div class="skill-item">Embedded C</div>
-                <div class="skill-item">OOPs</div>
-                <div class="skill-item">HTML</div>
-                <div class="skill-item">CSS</div>
-            </div>
-
-            <h3>Core Skills</h3>
-            <div class="skills-grid">
-                <div class="skill-item">VLSI</div>
-                <div class="skill-item">Embedded Systems</div>
-                <div class="skill-item">Arduino</div>
-                <div class="skill-item">Robotics</div>
-                <div class="skill-item">PCB Design</div>
-                <div class="skill-item">Computer Networks</div>
-                <div class="skill-item">Automation</div>
-                <div class="skill-item">ROS</div>
-                <div class="skill-item">Machine Learning</div>
-                <div class="skill-item">UI/UX Design</div>
-            </div>
-        </section>
-        
-        <section id="Contact" class="content-section">
-            <h2>Get In Touch</h2>
-            <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
-            
-            <div class="contact-form">
-                <form>
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <input type="text" placeholder="Subject">
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-            
-            <div class="contact-info">
-                <p>Email: bhargavarammalladi@gmail.com</p>
-                <p>Phone: (626) 725-2220</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/bhargavamalladi/">LinkedIn</a>
-                    <a href="https://github.com/r18m13">GitHub</a>
-                </div>
-            </div>
-        </section>
-    </div>
     <footer>
-        <p>R18M13</p> 
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+        </div>
     </footer>
-    </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Create animated background nodes
+        const animatedBg = document.getElementById('animatedBg');
+        const nodeCount = 12;
+        
+        for (let i = 0; i < nodeCount; i++) {
+            const node = document.createElement('div');
+            node.className = `node ${i % 2 === 0 ? 'red' : 'gold'}`;
+            
+            const size = Math.random() * 200 + 100;
+            node.style.width = `${size}px`;
+            node.style.height = `${size}px`;
+            node.style.left = `${Math.random() * 100}%`;
+            node.style.top = `${Math.random() * 100}%`;
+            
+            // Random movement values
+            node.style.setProperty('--tx1', `${(Math.random() - 0.5) * 400}px`);
+            node.style.setProperty('--ty1', `${(Math.random() - 0.5) * 400}px`);
+            node.style.setProperty('--tx2', `${(Math.random() - 0.5) * 600}px`);
+            node.style.setProperty('--ty2', `${(Math.random() - 0.5) * 600}px`);
+            node.style.setProperty('--tx3', `${(Math.random() - 0.5) * 500}px`);
+            node.style.setProperty('--ty3', `${(Math.random() - 0.5) * 500}px`);
+            
+            node.style.animationDelay = `${Math.random() * -20}s`;
+            node.style.animationDuration = `${15 + Math.random() * 10}s`;
+            
+            animatedBg.appendChild(node);
+        }
+
+        const projects = [
+            {
+                title: "Distributed Task Queue",
+                description: "High-performance task queue system handling 10M+ jobs daily with advanced scheduling and fault tolerance.",
+                tags: ["Python", "Redis", "Docker", "AWS"],
+                link: "/projects/task-queue.html"
+            },
+            {
+                title: "Infrastructure Automation",
+                description: "Enterprise-grade CLI tool streamlining deployment pipelines and cloud infrastructure provisioning.",
+                tags: ["Go", "Terraform", "Kubernetes"],
+                link: "/projects/infrastructure-automation.html"
+            },
+            {
+                title: "Real-time Analytics Engine",
+                description: "Scalable data processing platform delivering real-time insights and system metrics visualization.",
+                tags: ["Node.js", "React", "PostgreSQL", "WebSocket"],
+                link: "/projects/analytics-engine.html"
+            },
+            {
+                title: "API Gateway",
+                description: "Custom-built gateway featuring intelligent rate limiting, authentication, and dynamic request routing.",
+                tags: ["Rust", "Redis", "Docker"],
+                link: "/projects/api-gateway.html"
+            },
+            {
+                title: "Zero-Downtime Migration Tool",
+                description: "Production-grade database migration system ensuring seamless transitions at enterprise scale.",
+                tags: ["Python", "PostgreSQL", "MySQL"],
+                link: "/projects/migration-tool.html"
+            },
+            {
+                title: "Observability Platform",
+                description: "Comprehensive monitoring solution with advanced alerting and custom metric visualization.",
+                tags: ["Prometheus", "Grafana", "Go"],
+                link: "/projects/observability-platform.html"
+            }
+        ];
+
+        const projectsContainer = document.getElementById('projects');
+        
+        projects.forEach((project, index) => {
+            const card = document.createElement('a');
+            card.className = 'project-card';
+            card.href = project.link;
+            
+            card.innerHTML = `
+                <div class="project-number">PROJECT ${String(index + 1).padStart(2, '0')}</div>
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <div class="tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+            `;
+            
+            projectsContainer.appendChild(card);
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('nav');
+        
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuBtn.textContent = nav.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when clicking nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuBtn.textContent = '☰';
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && !menuBtn.contains(e.target) && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                menuBtn.textContent = '☰';
+            }
+        });
+    </script>
 </body>
 </html>
