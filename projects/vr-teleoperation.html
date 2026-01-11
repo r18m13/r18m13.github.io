@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Name - Your Name</title>
+    <title>Real‑Time VR Teleoperation with Haptic‑Enhanced Robotic Control - Bhargava Malladi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -205,7 +205,7 @@
 
         .project-image {
             width: 100%;
-            height: clamp(300px, 50vw, 500px);
+            height: clamp(450px, 50vw, 500px);
             background: var(--accent-gradient);
             border-radius: 18px;
             margin: clamp(40px, 8vw, 60px) 0;
@@ -388,68 +388,67 @@
     <div class="container">
         <section class="project-hero">
             <div class="project-category">Featured Project</div>
-            <h1 class="project-title">Distributed Task Queue</h1>
-            <p class="project-subtitle">A high-performance task queue system designed to handle millions of jobs daily with advanced scheduling, fault tolerance, and real-time monitoring capabilities.</p>
+            <h1 class="project-title">Real‑Time VR Teleoperation with Haptic‑Enhanced Robotic Control</h1>
+            <p class="project-subtitle">An immersive VR‑haptic teleoperation system enabling intuitive, low‑latency robotic control with precise feedback, seamless calibration, and real‑time responsiveness.</p>
         </section>
 
         <div class="project-meta">
             <div class="meta-item">
                 <h3>Role</h3>
-                <p>Lead Engineer</p>
+                <p>Personal Project</p>
             </div>
             <div class="meta-item">
                 <h3>Timeline</h3>
-                <p>6 months</p>
+                <p>8 Months</p>
             </div>
             <div class="meta-item">
                 <h3>Year</h3>
-                <p>2024</p>
+                <p>2025</p>
             </div>
             <div class="meta-item">
                 <h3>Technologies</h3>
                 <div class="tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">Redis</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">AWS</span>
+                    <span class="tag">ROS(Robot Operating System)</span>
+                    <span class="tag">Unity</span>
+                    <span class="tag">RTOS</span>
+                    <span class="tag">VR</span>
+                    <span class="tag">Haptics</span>
+                    <span class="tag">Robotics</span>
                 </div>
             </div>
         </div>
 
-        <div class="project-image">🚀</div>
+        <div class="project-image" style="background-image: url('../images/VR.png'); background-size: cover; background-position: center; opacity: 1;">
+        </div>
 
         <section class="content-section">
             <h2 class="section-title">Overview</h2>
-            <p>The distributed task queue was built to solve the challenge of processing millions of background jobs efficiently and reliably. As our user base grew exponentially, we needed a system that could scale horizontally while maintaining job integrity and providing real-time visibility into queue health.</p>
-            <p>The solution leverages Redis for its blazing-fast in-memory operations, combined with a custom Python orchestration layer that handles job scheduling, retry logic, and failure recovery. The entire system is containerized with Docker and deployed on AWS infrastructure for maximum scalability.</p>
+            <p>The VR‑haptic teleoperation system was developed to address the challenge of controlling a robotic arm intuitively and responsively in immersive environments. Traditional interfaces often lack natural feedback and precise motion mapping, making fine manipulation difficult. By combining VR visualization with force‑based interaction, the goal was to create a control experience that feels fluid, accurate, and human‑centric.</p>
+            <p>The solution integrates a Unity‑based OpenXR environment for real‑time 3D visualization, paired with a Novint Falcon haptic device that provides high‑fidelity force feedback. A custom control pipeline handles workspace calibration, motion scaling, and low‑latency pose updates to ensure smooth end‑effector manipulation. The entire system is engineered for responsiveness, stability, and ease of experimentation, resulting in a polished, intuitive teleoperation experience.</p>
         </section>
 
         <section class="content-section">
             <h2 class="section-title">Key Features</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>High Throughput</h4>
-                    <p>Processes 10M+ jobs daily with sub-second latency for most operations.</p>
+                    <h4>Immersive Visualization</h4>
+                    <p>Unity‑based OpenXR environment provides real‑time 3D rendering of the robotic arm for intuitive spatial awareness.</p>
                 </div>
                 <div class="feature-card">
-                    <h4>Fault Tolerance</h4>
-                    <p>Automatic retry mechanisms and dead letter queues ensure no job is lost.</p>
+                    <h4>Haptic Feedback</h4>
+                    <p>Novint Falcon delivers precise force cues, enabling natural interaction and improved manipulation accuracy.</p>
                 </div>
                 <div class="feature-card">
-                    <h4>Priority Scheduling</h4>
-                    <p>Multi-tier priority system ensures critical jobs are processed first.</p>
+                    <h4>ROS‑Integrated Communication</h4>
+                    <p>ROS–TCP–Connector plugin enables reliable bidirectional communication between Unity and the robot’s ROS ecosystem.</p>
                 </div>
                 <div class="feature-card">
-                    <h4>Real-time Monitoring</h4>
-                    <p>Comprehensive dashboard for tracking queue health and performance metrics.</p>
+                    <h4>Workspace Calibration</h4>
+                    <p>Automatic calibration aligns the haptic device workspace with the robot’s operational space for consistent control.</p>
                 </div>
                 <div class="feature-card">
-                    <h4>Horizontal Scaling</h4>
-                    <p>Add workers dynamically based on queue depth and processing needs.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Job Dependencies</h4>
-                    <p>Support for complex job chains and conditional execution flows.</p>
+                    <h4>Robust Teleoperation Loop</h4>
+                    <p>Stable, fault‑tolerant control loop maintains responsiveness even under rapid or complex user inputs.</p>
                 </div>
             </div>
         </section>
@@ -457,34 +456,47 @@
         <section class="content-section">
             <h2 class="section-title">Technical Implementation</h2>
             <h3>Architecture</h3>
-            <p>The system follows a producer-consumer pattern with multiple worker pools. Producers enqueue jobs to Redis, while consumer workers pull and process tasks based on priority. A separate monitoring service tracks metrics and health status.</p>
-            
+            <p>The teleoperation system integrates Unity’s OpenXR framework with ROS using the ROS–TCP–Connector plugin to enable real‑time communication between the VR environment and the robotic arm. Unity handles immersive visualization and user input, while ROS manages robot kinematics, control commands, and state feedback. The Novint Falcon haptic device is interfaced through a custom Unity plugin, providing force feedback synchronized with robot interactions.</p>
+            <p>A calibration module aligns the Falcon’s physical workspace with the robot’s coordinate frame, and motion scaling logic adjusts user movements for both fine manipulation and large‑range tasks. The system maintains continuous bidirectional messaging to ensure smooth, responsive end‑effector control.</p>
             <div class="code-block">
-<span style="color: #b49fde;">import</span> redis
-<span style="color: #b49fde;">from</span> queue <span style="color: #b49fde;">import</span> TaskQueue
-
-<span style="color: #6eb5ff;">queue</span> = TaskQueue(
-    redis_client=redis.Redis(host=<span style="color: #8dc5ff;">'localhost'</span>),
-    max_retries=<span style="color: #8dc5ff;">3</span>,
-    timeout=<span style="color: #8dc5ff;">300</span>
-)
-
-<span style="color: #7a7a7a;"># Enqueue a task</span>
-queue.enqueue(
-    <span style="color: #8dc5ff;">'send_email'</span>,
-    args={<span style="color: #8dc5ff;">'to'</span>: <span style="color: #8dc5ff;">'user@example.com'</span>},
-    priority=<span style="color: #8dc5ff;">'high'</span>
-)
+                <p>Example ROS Publisher for Target Pose:</p>
+<span style="color: #b49fde;">import</span> rospy <br>
+<span style="color: #b49fde;">from</span> geometry_msgs.msg <span style="color: #b49fde;">import</span> PoseStamped <br><br>
+pub = rospy.Publisher(<span style="color: #6eb5ff;">'/teleop/target_pose'</span>, PoseStamped, queue_size=10) <br>
+rospy.init_node(<span style="color: #6eb5ff;">'vr_teleop_bridge'</span>) <br><br>
+pose = PoseStamped() <br>
+pose.header.frame_id = <span style="color: #6eb5ff;">"base_link"</span> <br>
+pose.pose.position.x = 0.42 <br>
+pose.pose.position.y = 0.10 <br>
+pose.pose.position.z = 0.55 <br><br>
+pub.publish(pose) <br>
             </div>
 
+            <p>The system follows a modular, bidirectional communication architecture connecting Unity, ROS, and the haptic interface.</p>
+            <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
+                <li><strong>Unity (OpenXR Layer):</strong> Captures VR controller or Falcon input, renders the robotic arm in real time, and sends target poses to ROS.</li>
+                <li><strong>ROS Core:</strong> Receives pose commands, performs kinematic checks, and executes motion control on the robot.</li>
+                <li><strong>ROS–TCP–Connector:</strong> Bridges Unity and ROS using TCP messaging for reliable, low‑latency data exchange.</li>
+                <li><strong>Haptic Feedback Module:</strong> Computes force responses based on robot state or collisions and sends them back to the Falcon device.</li>
+                <li><strong>Calibration & Scaling Layer:</strong> Ensures consistent mapping between user motion and robot workspace.</li>
+            </ul>
+            <p style="margin-top: 15px;">A lightweight monitoring node tracks communication latency, dropped messages, and control loop stability to maintain system responsiveness.</p>
+
             <h3>Performance Optimizations</h3>
-            <p>We implemented several key optimizations to achieve our throughput goals. Connection pooling reduces Redis connection overhead, batch processing groups similar jobs together, and intelligent prefetching ensures workers always have tasks ready to process.</p>
+            <p>Several optimizations were implemented to achieve smooth, real‑time teleoperation:</p>
+            <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
+                <li><strong>Message Rate Tuning:</strong> Unity and ROS publish/subscribe rates were optimized to reduce jitter and maintain consistent motion updates.</li>
+                <li><strong>Efficient Pose Serialization:</strong> Compact data formats minimize bandwidth and reduce overhead in the Unity–ROS communication loop.</li>
+                <li><strong>Haptic Loop Optimization:</strong> Force feedback calculations run at a higher frequency to ensure crisp, realistic tactile responses.</li>
+            </ul>
+            <p style="margin-top: 15px;">These improvements collectively reduce latency, enhance control precision, and create a more natural teleoperation experience.</p>
         </section>
 
         <section class="content-section">
             <h2 class="section-title">Results & Impact</h2>
-            <p>Since deployment, the task queue has processed over 2 billion jobs with a 99.99% success rate. Average job latency decreased by 60% compared to the previous system, and the ability to scale horizontally has saved significant infrastructure costs during peak traffic periods.</p>
-            <p>The monitoring dashboard has become an essential tool for the operations team, providing real-time visibility into system health and enabling proactive issue resolution before users are impacted.</p>
+            <p>The system delivers highly responsive, intuitive robotic manipulation in VR, enabling users to control the robot with precision and confidence. Latency between user input and robot motion was reduced significantly, resulting in smoother end‑effector trajectories and more stable teleoperation.</p>
+            <p>The integration of haptic feedback dramatically improves user awareness of contact forces and environmental interactions, making delicate tasks easier to perform. The modular architecture also allows rapid experimentation with new control modes, scaling strategies, and robot configurations.</p>
+            <p>The monitoring tools have become essential for evaluating communication performance, ensuring consistent responsiveness, and enabling quick diagnosis of issues during testing or demos. Overall, the system provides a polished, immersive teleoperation experience that bridges VR, robotics, and haptics in a cohesive and impactful way.</p>
         </section>
 
         <div class="cta-section">
@@ -492,7 +504,7 @@ queue.enqueue(
             <p class="project-subtitle">Check out the source code or get in touch to discuss the technical details.</p>
             <div class="cta-buttons">
                 <a href="https://github.com/yourusername/project" class="btn btn-primary">View on GitHub</a>
-                <a href="mailto:your.email@example.com" class="btn btn-secondary">Contact Me</a>
+                <a href="mailto:bhargavarammalladi@gmail.com" class="btn btn-secondary">Contact Me</a>
             </div>
         </div>
     </div>
