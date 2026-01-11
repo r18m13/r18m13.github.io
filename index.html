@@ -388,6 +388,10 @@
         }
 
         @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+            }
+
             nav {
                 position: fixed;
                 top: 48px;
@@ -399,23 +403,28 @@
                 flex-direction: column;
                 padding: 24px;
                 gap: 24px;
-                transform: translateY(-100%);
+                max-height: 0;
+                overflow: hidden;
                 opacity: 0;
-                transition: transform 0.3s, opacity 0.3s;
+                transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             nav.active {
-                transform: translateY(0);
+                max-height: 300px;
                 opacity: 1;
+                padding: 24px;
             }
 
             .mobile-menu-btn {
                 display: block;
+                z-index: 1001;
             }
 
             nav a {
                 font-size: 18px;
+                display: block;
+                text-align: center;
             }
 
             .projects-grid {
@@ -451,7 +460,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">Bhargava Malladi</a>
+                <a href="#" class="logo">Your Name</a>
                 <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
                 <nav id="nav">
                     <a href="#work">Work</a>
