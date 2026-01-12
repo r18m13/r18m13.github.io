@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collaborative Drone-UGV System for Precision Agriculture - Bhargava Malladi</title>
+    <title>Monocular SLAM - Bhargava Malladi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 0;
+            margin: 0;  
             padding: 0;
             box-sizing: border-box;
         }
@@ -385,139 +385,154 @@
         </div>
     </header>
 
-    <div class="container">
-        <section class="project-hero">
-            <div class="project-category">Featured Project</div>
-            <h1 class="project-title">Collaborative Drone-UGV System for Precision Agriculture</h1>
-            <p class="project-subtitle">A collaborative drone‑UGV system enabling efficient, autonomous precision agriculture with real‑time communication, coordinated operations, and targeted intervention.</p>
-        </section>
 
-        <div class="project-meta">
-            <div class="meta-item">
-                <h3>Role</h3>
-                <p>Researcher</p>
-            </div>
-            <div class="meta-item">
-                <h3>Timeline</h3>
-                <p>2 Years</p>
-            </div>
-            <div class="meta-item">
-                <h3>Year</h3>
-                <p>2024 - 2025</p>
-            </div>
-            <div class="meta-item">
-                <h3>Technologies</h3>
-                <div class="tags">
-                    <span class="tag">ROS(Robot Operating System)</span>
-                    <span class="tag">Sockets</span>
-                    <span class="tag">TCP/IP</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Scheduling</span>
-                    <span class="tag">Path-Planning</span>
-                    <span class="tag">Computer Vision</span>
-                    <span class="tag">Robotics</span>
-                </div>
+<div class="container">
+    <section class="project-hero">
+        <div class="project-category">Featured Project</div>
+        <h1 class="project-title">UML-Based Robotic Trajectory Mapping and Video Analysis Tool</h1>
+        <p class="project-subtitle">
+            A UML-driven monocular visual odometry framework for frame-by-frame robot localization and 2D trajectory reconstruction from video data.
+        </p>
+    </section>
+
+    <div class="project-meta">
+        <div class="meta-item">
+            <h3>Role</h3>
+            <p>Personal Project</p>
+        </div>
+        <div class="meta-item">
+            <h3>Timeline</h3>
+            <p>6 Months</p>
+        </div>
+        <div class="meta-item">
+            <h3>Year</h3>
+            <p>2024</p>
+        </div>
+        <div class="meta-item">
+            <h3>Technologies</h3>
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">OpenCV</span>
+                <span class="tag">Monocular Visual Odometry</span>
+                <span class="tag">UML</span>
+                <span class="tag">Object-Oriented Design</span>
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Trajectory Analysis</span>
+                <span class="tag">Data Visualization</span>
             </div>
         </div>
+    </div>
 
-        <div class="project-image" style="background-image: url('../images/Husky.png'); background-size: cover; background-position: center; opacity: 1;"></div>
-        <div class="project-image" style="background-image: url('../images/Removal.png'); background-size: cover; background-position: center; opacity: 1;"></div>
+    <div class="project-image" style="background-image: url('../images/Trial_2.png'); background-size: cover; background-position: center; opacity: 1;"></div>
+    <section class="content-section">
+        <h2 class="section-title">Overview</h2>
+        <p>
+            This project was developed to analyze robotic motion using monocular video data and structured software design. Traditional trajectory estimation systems often rely on depth sensors, stereo vision, or tightly coupled hardware setups, which increase system complexity. This work focuses on extracting reliable motion trajectories using only a single camera while maintaining a clean, extensible software architecture.
+        </p>
+        <p>
+            The system processes video sequences frame by frame to estimate relative robot motion and reconstruct its planar trajectory over time. UML-based modeling was used extensively to define system structure, data flow, and object responsibilities. The result is a scalable analysis tool that combines principled software engineering with monocular visual odometry for accurate 2D trajectory mapping.
+        </p>
+    </section>
 
-        <section class="content-section">
-            <h2 class="section-title">Overview</h2>
-            <p>The collaborative drone‑UGV system was developed to address the challenge of performing precision agricultural tasks efficiently and autonomously. Traditional methods of crop monitoring and intervention are labor-intensive, time-consuming, and prone to inefficiency. By enabling drones to detect crop conditions and communicate positional data to UGVs equipped with robotic manipulators, the goal was to create a coordinated system that is accurate, responsive, and minimizes human effort.</p>
-            <p>The solution integrates real-time aerial sensing with ground-based robotic action. Drones capture high-resolution imagery to identify target areas, while a communication pipeline transmits precise positional data to the UGV. The UGV’s manipulator executes targeted interventions such as weeding or planting, guided by the drone’s input. The system is engineered for synchronized operation, low-latency communication, and reliable field performance, resulting in an effective, autonomous precision agriculture workflow.</p>
-        </section>
-
-        <section class="content-section">
-            <h2 class="section-title">Key Features</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>Collaborative Drone‑UGV Coordination</h4>
-                    <p>Real-time communication allows drones to share positional and crop data with UGVs for synchronized action.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Autonomous Crop Monitoring</h4>
-                    <p>Drone equipped with NVIDIA Jetson Orin Nano processes high-resolution imagery onboard to identify crop conditions and target intervention areas efficiently.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Robotic Manipulator Control</h4>
-                    <p>UGV-mounted manipulator executes precise actions such as uprooting weeds or targeted planting based on drone input.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Low-Latency Communication</h4>
-                    <p>Fast, reliable data transfer ensures timely coordination between aerial and ground units for accurate field operations.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Integrated Precision Agriculture Workflow</h4>
-                    <p>System combines sensing, onboard processing, and action in a seamless, autonomous process optimized for efficiency and accuracy.</p>
-                </div>
+    <section class="content-section">
+        <h2 class="section-title">Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4>UML-Driven Architecture</h4>
+                <p>
+                    System design is guided by UML class, sequence, and component diagrams to ensure modularity and maintainability.
+                </p>
             </div>
-        </section>
+            <div class="feature-card">
+                <h4>Monocular Visual Odometry</h4>
+                <p>
+                    Estimates relative robot motion from a single camera without relying on depth sensors or stereo input.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h4>Frame-by-Frame Localization</h4>
+                <p>
+                    Computes robot pose incrementally for each video frame, enabling continuous motion tracking.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h4>2D Trajectory Reconstruction</h4>
+                <p>
+                    Accumulates pose estimates to generate accurate planar trajectory maps from visual data.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h4>Visual Motion Analysis</h4>
+                <p>
+                    Feature detection and tracking provide insight into motion consistency and path behavior.
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <section class="content-section">
-    <h2 class="section-title">Technical Implementation</h2>
-    <h3>Architecture</h3>
-    <p>The collaborative Drone‑UGV system integrates aerial weed detection with autonomous ground intervention. The drone is equipped with a Sony Alpha camera and NVIDIA Jetson Orin Nano for real-time weed detection and Ground Sampling Distance (GSD) calculation using GPS data via MAVLink. Detected weed coordinates are transmitted to the UGV for precise action.</p>
-    <p>The UGV, a Clearpath Husky A200, is equipped with a ZED stereo camera, 3D LiDAR, and a UR5e manipulator with a Robotiq gripper. A custom path-planning algorithm navigates the UGV to target GPS locations, applying positional offsets for accurate manipulator alignment. ROS handles localization, navigation, and sensor integration, while TCP ensures reliable communication between UGV and manipulator.</p>
-    
-    <div class="code-block">
-        <p>Example Python Socket Client for Sending Weed Coordinates to UGV:</p>
-<span style="color: #b49fde;">import</span> socket <br>
-<br>
-HOST = <span style="color: #6eb5ff;">'192.168.1.10'</span>  <span style="color: #a1a1a6;"># UGV IP address</span><br>
-PORT = 5005 <br>
-<br>
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) <br>
-s.connect((HOST, PORT)) <br>
-<br>
-weed_gps = <span style="color: #6eb5ff;">"34.12345,-118.12345"</span> <br>
-s.sendall(weed_gps.encode()) <br>
-s.close() <br>
-    </div>
+    <section class="content-section">
+        <h2 class="section-title">Technical Implementation</h2>
+        <h3>Architecture</h3>
+        <p>
+            The system follows a UML-based, object-oriented architecture built around a modular video processing pipeline. UML diagrams were used to define clear boundaries between components such as video input handling, feature extraction, motion estimation, and trajectory visualization.
+        </p>
+        <p>
+            Video sequences are processed sequentially, with each frame analyzed to detect and track visual features. Relative motion between frames is estimated using monocular visual odometry principles. These incremental pose estimates are accumulated in a global reference frame to reconstruct the robot’s 2D trajectory.
+        </p>
 
-    <div class="code-block">
-        <p>Example URScript Command to Move UR5e to Target Pose:</p>
-<span style="color: #b49fde;">movej</span>([0.0, -1.57, 1.57, 0.0, 1.57, 0.0], a=1.2, v=0.25) <br>
-<span style="color: #b49fde;"># a</span> is acceleration, <span style="color: #b49fde;">v</span> is velocity<br>
-<span style="color: #b49fde;">movel</span>(p[0.5, 0.0, 0.2, 0, 3.14, 0], a=0.5, v=0.1) <br>
-<span style="color: #b49fde;"># Move linearly to precise position with offset for weed uprooting</span>
-    </div>
+        <div class="code-block">
+            <p>Example Python Code for Frame-by-Frame Motion Estimation:</p>
+<span style="color: #b49fde;">import</span> cv2 <br>
+<span style="color: #b49fde;">import</span> numpy <span style="color: #b49fde;">as</span> np <br><br>
+cap = cv2.VideoCapture(<span style="color: #6eb5ff;">"robot_video.mp4"</span>) <br>
+ret, prev_frame = cap.read() <br>
+prev_gray = cv2.cvtColor(prev_frame, cv2.COLOR_BGR2GRAY) <br><br>
+<span style="color: #b49fde;">while</span> cap.isOpened(): <br>
+&nbsp;&nbsp;ret, frame = cap.read() <br>
+&nbsp;&nbsp;<span style="color: #b49fde;">if</span> not ret: <span style="color: #b49fde;">break</span> <br>
+&nbsp;&nbsp;gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) <br>
+&nbsp;&nbsp;<span style="color: #a1a1a6;"># Feature tracking and relative motion estimation</span> <br>
+&nbsp;&nbsp;prev_gray = gray <br>
+        </div>
 
-    <p>The system follows a modular, bidirectional communication architecture connecting the drone, UGV, and manipulator:</p>
-    <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
-        <li><strong>Drone Layer:</strong> Captures high-resolution imagery, runs onboard inference on Jetson Orin Nano, calculates GSD, and sends GPS coordinates of detected weeds.</li>
-        <li><strong>UGV Layer:</strong> Clearpath Husky A200 receives GPS targets, localizes using ZED stereo camera, 3D LiDAR, and ROS, and navigates with custom path planning.</li>
-        <li><strong>Manipulator Layer:</strong> UR5e with Robotiq gripper executes precise interventions using positional offsets communicated over TCP.</li>
-        <li><strong>ROS Core:</strong> Manages navigation, manipulator control, and sensor fusion for reliable operation.</li>
-        <li><strong>Monitoring Module:</strong> Tracks latency, dropped messages, and system performance to maintain responsiveness.</li>
-    </ul>
-    <p style="margin-top: 15px;">The modular design allows seamless coordination between aerial detection, ground navigation, and manipulator execution for autonomous precision agriculture.</p>
+        <p>The system is decomposed into the following core modules:</p>
+        <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
+            <li><strong>Video Input Module:</strong> Handles video loading, frame extraction, and preprocessing.</li>
+            <li><strong>Feature Tracking Module:</strong> Detects and tracks visual features across frames.</li>
+            <li><strong>Motion Estimation Module:</strong> Computes relative pose changes using monocular visual odometry.</li>
+            <li><strong>Trajectory Mapping Module:</strong> Accumulates poses to form a 2D trajectory representation.</li>
+            <li><strong>Visualization Module:</strong> Plots trajectories and overlays motion paths for analysis.</li>
+        </ul>
+        <p style="margin-top: 15px;">
+            This modular architecture enables easy substitution of feature detectors, motion models, and visualization techniques.
+        </p>
 
-    <h3>Performance Optimizations</h3>
-    <p>Several optimizations were implemented to achieve smooth, autonomous operation:</p>
-    <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
-        <li><strong>Onboard Inference Efficiency:</strong> Jetson Orin Nano processes weed detection in real-time, minimizing latency.</li>
-        <li><strong>GPS to Manipulator Mapping:</strong> Positional offsets ensure UR5e gripper aligns accurately with target weeds.</li>
-        <li><strong>Path Planning Optimization:</strong> Custom algorithm computes obstacle-free routes using LiDAR and stereo vision data.</li>
-        <li><strong>Low-Latency Communication:</strong> TCP links between UGV and manipulator, and drone-to-UGV data transfer maintain synchronization.</li>
-        <li><strong>Sensor Fusion:</strong> ROS integrates GPS, LiDAR, and stereo vision for robust localization and navigation.</li>
-    </ul>
-    <p style="margin-top: 15px;">These optimizations collectively reduce latency, enhance intervention precision, and ensure reliable autonomous operation in agricultural fields.</p>
-</section>
+        <h3>Performance Optimizations</h3>
+        <p>Several optimizations were applied to improve robustness and efficiency:</p>
+        <ul style="margin-left: 20px; margin-top: 10px; color: #a1a1a6; font-size: clamp(16px, 2.5vw, 19px);">
+            <li><strong>Efficient Feature Tracking:</strong> Reduces computational cost while maintaining stable localization.</li>
+            <li><strong>Incremental Pose Integration:</strong> Updates trajectory estimates smoothly across frames.</li>
+            <li><strong>Modular Pipeline Execution:</strong> Enables profiling and optimization of individual processing stages.</li>
+        </ul>
+        <p style="margin-top: 15px;">
+            These optimizations ensure consistent trajectory estimation from long monocular video sequences.
+        </p>
+    </section>
 
-<section class="content-section">
-    <h2 class="section-title">Results & Impact</h2>
-    <p>The system provides a fully autonomous precision agriculture workflow: drones detect weeds, compute GPS locations with GSD, and transmit them to the UGV. The Husky A200 navigates autonomously to each target, and the UR5e manipulator with Robotiq gripper executes precise weed removal.</p>
-    <p>Low-latency communication ensures synchronized operation between aerial and ground units. Onboard Jetson inference reduces dependency on ground processing, while ROS-based sensor fusion provides robust GPS localization even in complex terrains.</p>
-    <p>The modular architecture supports rapid experimentation with new detection algorithms, manipulator strategies, and field layouts. Monitoring tools maintain reliability by tracking latency, message integrity, and system performance. Overall, the system demonstrates an effective, coordinated, and autonomous solution for precision agriculture.</p>
-</section>
+    <section class="content-section">
+        <h2 class="section-title">Results & Impact</h2>
+        <p>
+            The system successfully reconstructs accurate 2D robot trajectories from monocular video input. The resulting trajectory plots clearly represent robot motion patterns and path progression, demonstrating reliable frame-to-frame localization and visual odometry.
+        </p>
+        <p>
+            By intentionally avoiding full 3D SLAM reconstruction, the project highlights the effectiveness of monocular visual odometry for planar motion analysis under minimal sensing constraints. The UML-driven design ensures the framework is easy to extend toward stereo vision, depth sensing, or full SLAM pipelines in future work.
+        </p>
+        <p>
+            Overall, the project demonstrates a strong integration of software architecture principles, computer vision, and robotic motion analysis, resulting in a clean, extensible, and technically sound trajectory mapping tool.
+        </p>
+    </section>
+</div>
 
-<section class="content-section">
-    <h2 class="section-title">Publications</h2>
-    <p>Published a research paper titled <strong>"Collaboration between aerial and ground robots for weed detection and removal"</strong> in <strong>"15th European Conference on Precision Agriculture"</strong></p>
-    <p>Link to the paper: <a href="https://doi.org/10.1163/9789004725232_126" style="color: var(--accent-blue); text-decoration: underline;">Research</a></p>
-</section>
 
         <div class="cta-section">
             <h2>Interested in learning more?</h2>
